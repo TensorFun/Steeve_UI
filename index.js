@@ -14,12 +14,20 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-app.post('', function(req, res){
 
-  console.log('Name (from visible form field): ' + req.body.name);
-  res.send(req.body.name);
-  
+app.post('/send_save', function(req, res) {
+  console.log(req.body.name)
+  res.contentType('json');
+  res.send({ some: JSON.stringify({response:'json'}) });
 });
+
+
+//app.post('', function(req, res){
+
+ // console.log('Name (from visible form field): ' + req.body.name);
+//  res.send(req.body.name);
+  
+//});
 
 
 
