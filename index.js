@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var express = require('express');
 
 app.use(express.static('public'))
+app.use(express.static('css'))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
