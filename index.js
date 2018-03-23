@@ -3,6 +3,9 @@ var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var express = require('express');
 
+
+
+
 app.use(express.static('public'))
 app.use(express.static('css'))
 
@@ -22,13 +25,6 @@ app.post('/send_save', function(req, res) {
   res.send({ some: JSON.stringify({response:'json'}) });
 });
 
-
-//app.post('', function(req, res){
-
- // console.log('Name (from visible form field): ' + req.body.name);
-//  res.send(req.body.name);
-  
-//});
 
 
 

@@ -18,6 +18,8 @@
   "homepage": "https://github.com/TensorFun/Steeve_UI#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.3"
+    "bootstrap": "^4.0.0",
+    "express": "^4.16.3",
+    "jquery": "^3.3.1"
   }
 }
