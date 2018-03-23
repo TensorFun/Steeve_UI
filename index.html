@@ -16,6 +16,8 @@
     <script>
       $(function(){
          $("#target").click(function(){
+           var theBuntton = document.getElementById('target');
+           this.style.display = 'none';
            //alert('OK')
            $.getScript("./javascript/delivery-bot.js");
          })
