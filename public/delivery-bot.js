@@ -39,32 +39,34 @@ botui.message
 var askAddress = function () {
   botui.message
     .bot({
-      delay: 500,
+      delay: 2000,
       content: 'Please input your CV or tell me some experience.'
-    })
-    .then(function () {
+
+    }).then(function () {
 
         var searchResult = $('.botui-actions-container');
-        var htmlFrag = '<form id=xxx class="formNewsLetter" action="send_save" target="id_iframe">'+'Name: <input type="text" name="Name"> <br></br>'+"<textarea id='fooo' cols='50' rows='5' name='content'>"+"Input your CV..."+"</textarea>"+'<p><input id="button" type="submit" value="送出表單" onclick="foo()" ></p>'+"</form>"
-        //var htmlFrag = '<form action="" class="formNewsLetter" target="id_iframe">'+'Name: <input type="text" name="Name">'+'<br></br>'+"<textarea cols='50' rows='5' name='name'>"+"Input your CV..."+"</textarea>"+'<input id="button" type="submit" value="送出表單>'+"</form>"
-        //var htmlFrag='<form action="" target="id_iframe">First name: <input type="text" name="FirstName" value="Mickey"><br>Last name: <input type="text" name="LastName" value="Mouse"><br><input type="submit" value="Submit"></form>'
+        var htmlFrag = '<form id=xxx class="formNewsLetter" action="send_save" target="id_iframe">'+'Name: <input type="text" name="Name"> <br></br>'+"<textarea id='fooo' cols='50' rows='5' name='content'>"+"Input your CV..."+"</textarea>"+'<p><input id="button" type="submit" value="送出表單" ></p>'+"</form>"
+        //Fixed Page
         var othertag = '<iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe> '
         searchResult.html(htmlFrag+othertag);
-        $(function(){
-          $(".formNewsLetter").submit(function(e){
+        formclick();
+
+    })
+        
+      
+  }
+
+  function formclick(){
+
+      $(".formNewsLetter").submit(function(e){
               
-              var content = $('#fooo').val();
-              chat_it_post(content);
-              //var name = $('input').val();
-              //alert(content);
-          });
+      var content = $('#fooo').val();
+      chat_it_post(content);
+      document.getElementById("xxx").style.display="none";
+      botui.message.bot('Waittinggggggggggg') 
 
-      });
+  });
 
-        }
-      
-      )  
-      
   }
 
   function chat_it_post(query){
@@ -74,10 +76,10 @@ var askAddress = function () {
       data: JSON.stringify({text: query}),
       dataType: 'json',
       success: function(data){
-        console.log(data)
-        console.log('process sucess');
+        //console.log(data)
+        //console.log('process sucess');
         company = data.Employer
-        console.log(company)
+        //console.log(company)
         botui.message.bot({
           delay: 3000,
           content: 'Steeve help you choose : '+ company
@@ -91,17 +93,6 @@ var askAddress = function () {
   }
 
   
-
-
-
-
-  function foo(){
-    document.getElementById("xxx").style.display="none";
-    botui.message.bot('Waittinggggggggggg')
-    
-
-    }
-
   
 
   
