@@ -44,3 +44,32 @@ iframe {
 .botui-message-content-link {
   color: #F1C40F;
 }
+
+
+.button {
+
+  background:    #ffffff;
+  border:        1px solid #007aff;
+  border-radius: 5px;
+  box-shadow:    0 1px #bbccee;
+  padding:       20px 25px;
+  color:         #007aff;
+  display:       inline-block;
+  font:          normal 700 35px/1 "Open Sans", sans-serif;
+  text-align:    center;
+  text-shadow:   none;
+  position:relative;
+  left:42%;
+
+}
+
+.p_change
+{
+margin-top: 10px;
+margin-bottom: 50px;
+color: rgb(255, 255, 255);
+font-size: 50px;
+background-color: #34495E;
+text-align:    center;
+text-shadow: rgb(150, 150, 150) 1px 3px 0px, rgb(171, 168, 168) 1px 13px 5px;
+}
