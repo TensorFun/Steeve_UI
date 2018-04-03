@@ -4,35 +4,12 @@ var botui = new BotUI('delivery-bot'),
 var company = ''
 
 botui.message
-  .bot('May I help you?')
-  .then(function () {
-    return botui.action.button({
-      delay: 1000,
-      addMessage: false, // so we could the address in message instead if 'Existing Address'
-      action: [{
-        text: 'find job',
-        value: 'job'
-      }, {
-        text: 'find applicant',
-        value: 'applicant'
-      }]
-    })
-}).then(function (res) {
-  if(res.value == 'job') {
-    botui.message.bot({
-      delay: 500,
-      content: 'You choose "find job."'
-    });
+  .bot('You choose Job')
+  .then(function (res) {
     askAddress();
-  } if(res.value == 'applicant') {
-    botui.message.human({
-      delay: 500,
-      content: 'You choose "find applicant.'
-    });
+  });
     
-    end();
-  }
-});
+
 
 
 

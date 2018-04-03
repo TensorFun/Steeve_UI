@@ -4,11 +4,11 @@ html, body {
 }
 
 body {
-  background-color: #34495E;
+  background-image: url("../img/pink.png");
 }
 
 span {
-  color: black;
+  color :#f2f4f5;
 }
 
 iframe {
@@ -20,11 +20,11 @@ iframe {
 }
 
 .botui-container {
-  background-color: #34495E;
+  background-image: url("../img/pink.png");
 }
 .botui-message-content {
   color: #FFFFFF;
-  background-color: #F1C40F;
+  background-color:#8f1325;
 }
 
 .botui-message-content.human {
@@ -55,13 +55,24 @@ iframe {
   padding:       20px 25px;
   color:         #007aff;
   display:       inline-block;
-  font:          normal 700 35px/1 "Open Sans", sans-serif;
+  font:          normal 700 25px/1 "Open Sans", sans-serif;
   text-align:    center;
   text-shadow:   none;
-  position:relative;
-  left:42%;
-
+  width:250px
 }
+
+.flex{
+  text-align : center;
+  
+}
+#target {
+  margin-right:30px;
+}
+#target1 {
+  margin-left:30px;
+}
+
+
 
 .p_change
 {
@@ -69,7 +80,6 @@ margin-top: 10px;
 margin-bottom: 50px;
 color: rgb(255, 255, 255);
 font-size: 50px;
-background-color: #34495E;
 text-align:    center;
 text-shadow: rgb(150, 150, 150) 1px 3px 0px, rgb(171, 168, 168) 1px 13px 5px;
 }

@@ -13,16 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel=stylesheet type="text/css" href="./css/black.css">
-    <script>
-      $(function(){
-         $("#target").click(function(){
-           var theBuntton = document.getElementById('target');
-           this.style.display = 'none';
-           //alert('OK')
-           $.getScript("./javascript/delivery-bot.js");
-         })
-      });
-    </script>
+    
     
   </head>
   <body>
@@ -35,22 +26,24 @@
     </nav>
     
 
-    <div>
-
+    <div class = 'flex'>
       <img src="./img/icon.png" width="180" height="180" style="display:block; margin:auto; margin-top: 100px;"><br>
-      <p class=p_change>今天天氣好嗎?</p>
-      <button id = "target" class='button' > 該你屁事 </button>
+      <p class=p_change>Hello , I'm Steeve</p>
+      <button  id = "target" class='button'  >   Find Job  </button>
+      <button  id = "target1" class='button' > Find Application </button>
+    </div>
       
       
       <div class="botui-app-container" id="delivery-bot">
         <bot-ui></bot-ui>
     </div>
-      <!--
-        <script src="./javascript/delivery-bot.js"></script>
-      -->
+    
+    <script src="./javascript/button.js"></script>
+    
+    
 
-    </div>
-  -->
+    
+  
     
   </body>
 </html>
