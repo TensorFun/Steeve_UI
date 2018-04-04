@@ -9,10 +9,6 @@ botui.message
     askAddress();
   });
     
-
-
-
-
 var askAddress = function () {
   botui.message
     .bot({
@@ -20,9 +16,14 @@ var askAddress = function () {
       content: 'Please input your CV or tell me some experience.'
 
     }).then(function () {
-
+        var str_name = "Name ".fontcolor('#8f1325')
         var searchResult = $('.botui-actions-container');
-        var htmlFrag = '<form id=xxx class="formNewsLetter" action="send_save" target="id_iframe">'+'Name: <input type="text" name="Name"> <br></br>'+"<textarea id='fooo' cols='50' rows='5' name='content'>"+"Input your CV..."+"</textarea>"+'<p><input id="button" type="submit" value="送出表單" ></p>'+"</form>"
+        //var htmlFrag = '<form  id=xxx class="formNewsLetter" action="send_save" target="id_iframe">'+'Name: <input type="text"  name="Name"> <br></br>'+"<textarea class = 'border_theme_color' id='fooo' cols='36' rows='4' name='content'>"+"Input your CV..."+"</textarea>"+'<p><input id="button" type="submit" value="送出表單" ></p>'+"</form>"
+        var htmlFrag = '<form  id=xxx class="formNewsLetter" action="send_save" target="id_iframe">'+
+         str_name +'<input type="text"  name="Name"> <br></br>'+
+        "<textarea class = 'border_theme_color' id='fooo' cols='36' rows='4' name='content' placeholder='Please input your CV or resume...'></textarea>"+
+        '<p><input class = "small_button" id="button" type="submit" value="Send" ></p>'+"</form>"
+
         //Fixed Page
         var othertag = '<iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe> '
         searchResult.html(htmlFrag+othertag);
