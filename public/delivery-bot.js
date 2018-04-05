@@ -44,7 +44,7 @@ var askAddress = function () {
     }).then(function () {
 
         var searchResult = $('.botui-actions-container');
-        var htmlFrag = '<form id=xxx class="formNewsLetter" action="send_save" target="id_iframe">'+'Name: <input type="text" name="Name"> <br></br>'+"<textarea id='fooo' cols='50' rows='5' name='content'>"+"Input your CV..."+"</textarea>"+'<p><input id="button" type="submit" value="送出表單" ></p>'+"</form>"
+        var htmlFrag = '<form id=xxx class="formNewsLetter" action="send_save" target="id_iframe">'+'Name: <input type="text" name="Name"> <br></br>'+"<textarea id='fooo' cols='20' rows='4' name='content'>"+"Input your CV..."+"</textarea>"+'<p><input id="button" type="submit" value="送出表單" ></p>'+"</form>"
         //Fixed Page
         var othertag = '<iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe> '
         searchResult.html(htmlFrag+othertag);

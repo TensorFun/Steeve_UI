@@ -4,7 +4,7 @@ html, body {
 }
 
 body {
-  background-image: url("../img/pink.png");
+  background-image: url("../img/red.png");
 }
 
 span {
@@ -20,7 +20,7 @@ iframe {
 }
 
 .botui-container {
-  background-image: url("../img/pink.png");
+  background-image: url("../img/red.png");
 }
 .botui-message-content {
   color: #FFFFFF;
@@ -45,17 +45,20 @@ iframe {
   color: #F1C40F;
 }
 
+.img-circle {
+  border-radius: 50%;
+}
 
 .button {
 
   background:    #ffffff;
-  border:        1px solid #007aff;
+  border:        1px solid #8f1325;
   border-radius: 5px;
   box-shadow:    0 1px #bbccee;
-  padding:       20px 25px;
-  color:         #007aff;
+  padding:       20px 20px;
+  color:         #8f1325;
   display:       inline-block;
-  font:          normal 700 25px/1 "Open Sans", sans-serif;
+  font:          normal 700 24px/1 "Open Sans", sans-serif;
   text-align:    center;
   text-shadow:   none;
   width:250px
@@ -82,4 +85,18 @@ color: rgb(255, 255, 255);
 font-size: 50px;
 text-align:    center;
 text-shadow: rgb(150, 150, 150) 1px 3px 0px, rgb(171, 168, 168) 1px 13px 5px;
+}
+.text_theme_color{
+  color : #8f1325;
+}
+.border_theme_color{
+  border: solid 1px #8f1325;
+}
+
+.small_button {
+  background-color: #8f1325; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 16px;
 }
