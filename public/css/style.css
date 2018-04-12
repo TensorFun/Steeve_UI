@@ -1,10 +1,43 @@
-body {
-    padding: 48px;
-    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
-  }
-  
-  a {
-    /*color: #00B7FF;*/
-    color: #8f1325;
-  }
+#Footer {height: 100px;position: relative;margin-top: -100px;}
 
+.formesg_btn { width: 9%; background: rgb(130, 224, 255);  }
+
+.input-group{
+
+  background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; 
+
+}
+  
+.input-control {
+  border: 0; 
+  padding: 10px; 
+  width: 87%;
+  margin-right: .5%; 
+  margin-left: .5%;
+  
+ }
+
+
+ .upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.btn{
+  padding-top: 9px
+}
+ 
+
+ 
+
+  

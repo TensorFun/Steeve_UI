@@ -1,92 +1,270 @@
-var botui = new BotUI('delivery-bot'),
-    address = 'House 1, First Ave.';
+var botui = new BotUI('delivery-bot')
+var email;
+var name;
+var content_arr = [];
 
-var company = ''
+$('.btn').attr('disabled',true);
+$('#myfile1').attr('disabled',true);
 
 botui.message
-  .bot('You choose Job')
-  .then(function (res) {
-    askAddress();
-  });
-    
-var askAddress = function () {
-  botui.message
+  .bot('Hello, I am Steeve')
+
+botui.message
+  .bot({
+    delay: 1000,
+    content: 'You choose job'
+  }).then(function(){
+    botui.message
+    .bot({
+      delay: 1000,
+      content: "What's your name"
+      })
+    }).then(function(){
+      $('#send').on("click",namefunc);
+  })
+
+
+ 
+
+function namefunc(e){
+
+  name = $('#m').val();
+  $('#m').val('');
+  //console.log(text)
+  botui.message.human({
+    delay: 1000,
+    content: name
+  }).then(function(){
+    botui.message
+    .bot({
+      delay: 1000,
+      content: "Oh,"+name
+    })
+  }).then(function(e){
+      
+      $('#send').attr('disabled',false)
+  }).then(function(){
+    botui.message
     .bot({
       delay: 2000,
-      content: 'Please input your CV or tell me some experience.'
+      content: "What’s your email?"
+    })  
+    $('#send').on("click",emailfunc);
+  })
+  $('#send').attr('disabled', 'disabled');
+  $('#send').off("click",namefunc);
+  e.preventDefault();
 
-    }).then(function () {
-        var str_name = "Name ".fontcolor('#8f1325')
-        var searchResult = $('.botui-actions-container');
-        //var htmlFrag = '<form  id=xxx class="formNewsLetter" action="send_save" target="id_iframe">'+'Name: <input type="text"  name="Name"> <br></br>'+"<textarea class = 'border_theme_color' id='fooo' cols='36' rows='4' name='content'>"+"Input your CV..."+"</textarea>"+'<p><input id="button" type="submit" value="送出表單" ></p>'+"</form>"
-        var htmlFrag = '<form  id=xxx class="formNewsLetter" action="send_save" target="id_iframe">'+
-         str_name +'<input type="text"  name="Name"> <br></br>'+
-        "<textarea class = 'border_theme_color' id='fooo' cols='36' rows='4' name='content' placeholder='Please input your CV or resume...'></textarea>"+
-        '<p><input class = "small_button" id="button" type="submit" value="Send" ></p>'+"</form>"
+}
 
-        //Fixed Page
-        var othertag = '<iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe> '
-        searchResult.html(htmlFrag+othertag);
-        formclick();
+function emailfunc(e){
 
-    })
-        
-      
-  }
-
-  function formclick(){
-
-      $(".formNewsLetter").submit(function(e){
-              
-      var content = $('#fooo').val();
-      chat_it_post(content);
-      document.getElementById("xxx").style.display="none";
-      botui.message.bot('Waittinggggggggggg') 
-
-  });
-
-  }
-
-  function chat_it_post(query){
-    $.ajax({
-      type:"POST",
-      url: "https://steevebot.ml/random",
-      data: JSON.stringify({text: query}),
-      dataType: 'json',
-      success: function(data){
-        //console.log(data)
-        //console.log('process sucess');
-        company = data.Employer
-        //console.log(company)
-        botui.message.bot({
+  email = $('#m').val();
+  $('#m').val('');
+  botui.message.human({
+    delay: 100,
+    content: email
+  }).then(function(){
+      botui.message
+      .bot({
+        delay: 1000,
+        content: "Well,"+name
+      })
+  }).then(function(){
+      botui.message
+        .bot({
+          delay: 2000,
+          content: "What are you expert in ?"
+      })
+  }).then(function(){
+      botui.message
+        .bot({
           delay: 3000,
-          content: 'Steeve help you choose : '+ company
-        });
-        
-      },
-      error: function() { 
-        console.log('process error');
-      } 
-    })
-  }
-
-  
-  
-
-  
-  
-  
-  
-  
-
-
-  
-
-
-  
-
-  
-
-
-  
+          content: "Or, you can give us your CV."
+        })
     
+  })
+  
+  $('#send').off("click",emailfunc);
+  $('.btn').attr('disabled',false);
+  $('#myfile1').attr('disabled',false);
+
+  $('#send').on("click",CV_type);
+  //$('#send').attr('disabled',true);
+  e.preventDefault();
+
+}
+
+
+function CV_type(){
+  $('.btn').attr('disabled',true);
+  $('#myfile1').attr('disabled',true);
+  
+   var content =  $('#m').val();
+   $('#m').val('');
+   content_arr.push(content)
+   console.log(content_arr)
+   botui.message
+    .human({
+      delay: 1000,
+      content: content
+
+  }).then(function(){
+
+    botui.message
+    .bot({
+      delay: 1000,
+      content: "Anything else you want to add?"
+    })
+
+  
+  }).then(function(){
+    return botui.action.button({
+    delay: 1000,
+    action: [{
+      text: '“Nope, that’s all”',
+      value: 'No'
+      }]
+    })
+  }).then(function(res){
+    if(res.value == 'No') {
+      $('#send').off("click",CV_type);
+      botui.message
+      .bot({
+        delay: 2000,
+        content: name + ", Is there any field you prefer to work in ? For example, front end , security …"
+      })
+      $('#send').on("click",Filed_type);
+      return botui.action.button({
+        delay: 2000,
+        action: [{
+          text: 'Fine for me',
+          value: 'Yes'
+          }]
+      })
+    }
+  }).then(function(res){
+    if(res.value == 'Yes') {
+
+      botui.message
+        .bot({
+          delay: 1000,
+          content: "Hi, "+name
+        }).then(function(){
+          botui.message
+            .bot({
+              delay: 1000,
+              content: "there are some jobs for you"
+          })
+      })
+
+
+
+    }
+
+  })
+}
+
+function Filed_type(){
+  var Filed =  $('#m').val();
+  $('#m').val('');
+  alert(Filed);
+
+  
+
+}
+
+
+
+
+
+
+
+
+ 
+
+  $("#myfile1").change(function(){
+
+
+    var fd = new FormData(),
+    myFile = document.getElementById("myfile1").files[0];
+
+    fd.append( 'file',  myFile);
+    
+    var ajaxUrl = "http://nlp-ultron.cs.nthu.edu.tw:9997/CV";
+    //console.log(fromData)
+    $.ajax({
+      url : ajaxUrl,
+      type : "POST",
+      data : fd,
+      // both 'contentType' and 'processData' parameters are
+      // required so that all data are correctly transferred
+      contentType : false,
+      processData : false
+    }).done(function(response){
+      $('#send').off("click",CV_type);
+      $('.btn').attr('disabled',true);
+      $('#myfile1').attr('disabled',true);
+      $('#send').off("click",Filed_type);
+
+
+      console.log(response)
+      CV_pdf_continue()
+      
+    }).fail(function(){
+      console.log("fail")
+      // Here you should treat the http errors (e.g., 403, 404)
+    })
+
+})
+
+function CV_pdf_continue(){
+
+  botui.message
+      .bot({
+        delay: 2000,
+        content: "Submit Successful"
+      }).then(function(){
+        botui.message
+          .bot({
+            delay: 2000,
+            content: name + ", Is there any field you prefer to work in ? For example, front end , security …"
+        })
+        $('#send').on("click",Filed_type);
+      }).then(function(){
+        return botui.action.button({
+          delay: 3000,
+          action: [{
+            text: 'Fine for me',
+            value: 'Yes'
+            }]
+        })
+      }).then(function(res){
+          if(res.value == 'Yes') {
+
+          botui.message
+            .bot({
+              delay: 1000,
+              content: "Hi, "+name
+            }).then(function(){
+              botui.message
+                .bot({
+                  delay: 1000,
+                  content: "there are some jobs for you"
+              })
+        })
+      }
+    })
+
+}
+
+
+
+
+
+
+$("#m").keydown(function(event){
+  if ( event.which == 13 ){
+    $('#send').click();  
+  }
+});

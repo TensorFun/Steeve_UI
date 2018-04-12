@@ -5,6 +5,4 @@ var company = ''
 
 botui.message
   .bot('You choose Application')
-  .then(function (res) {
-    
-  });
+  
