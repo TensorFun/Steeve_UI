@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel=stylesheet type="text/css" href="./css/black.css">
     <link rel=stylesheet type="text/css" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
     
     
   </head>
@@ -38,6 +39,11 @@
       
     <div class="botui-app-container" id="delivery-bot">
         <bot-ui></bot-ui>
+        <div id = "reminder">
+          <span class = "helper"></span>
+          <img src = "./img/upload1.png" height=50 />
+          <span class = "reminder_word">This is CV upload button</span>
+        </div>
     </div>
 
     
@@ -46,7 +52,7 @@
 
       <div class = 'input-group'>
           <div class="upload-btn-wrapper">
-              <button class="btn"><i class="fa fa-folder"></i></button>
+              <button class="btn"><i class="fas fa-cloud-upload-alt"></i></button>
               <input id = "myfile1" type="file" name="myfile" />
           </div>
         <input id="m" class = "input-control" autocomplete="off" />

@@ -11,7 +11,7 @@
 .input-control {
   border: 0; 
   padding: 10px; 
-  width: 87%;
+  width: 86%;
   margin-right: .5%; 
   margin-left: .5%;
   
@@ -35,6 +35,32 @@
 
 .btn{
   padding-top: 9px
+}
+
+
+#reminder{
+
+  border:5px orange solid;
+  padding:10px;
+  margin:15px 0px;
+  position:absolute;
+  left:-280px;
+  margin-bottom: 60px;
+}
+
+
+.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+#reminder_word{
+
+  font-weight:bold;
+  color: #000
+
+
 }
  
 

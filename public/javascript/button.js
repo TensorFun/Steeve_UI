@@ -16,6 +16,8 @@ $("#target").click(function(){
     initial_mes.show();
 
     $(".flex").hide()
+
+    
     
 
   })

@@ -3,6 +3,10 @@ var email;
 var name;
 var content_arr = [];
 
+
+
+
+
 $('.btn').attr('disabled',true);
 $('#myfile1').attr('disabled',true);
 
@@ -82,7 +86,9 @@ function emailfunc(e){
           delay: 3000,
           content: "Or, you can give us your CV."
         })
-    
+  }).then(function(){
+    var div_animate = $("#reminder")
+    div_animate.animate({left: '5px'}, "slow");
   })
   
   $('#send').off("click",emailfunc);
@@ -99,6 +105,7 @@ function emailfunc(e){
 function CV_type(){
   $('.btn').attr('disabled',true);
   $('#myfile1').attr('disabled',true);
+  $("#reminder").hide()
   
    var content =  $('#m').val();
    $('#m').val('');
@@ -184,6 +191,8 @@ function Filed_type(){
  
 
   $("#myfile1").change(function(){
+
+    $("#reminder").hide()
 
 
     var fd = new FormData(),
