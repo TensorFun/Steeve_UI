@@ -30,6 +30,11 @@ $("#target").click(function(){
     theBuntton.style.display = 'none';
     //alert('OK')
     $.getScript("./javascript/find_Application.js");
+    initial.show();
+    initial_mes.show();
+
+    $(".flex").hide()
+
   })
 
   
