@@ -4,9 +4,6 @@ var name;
 var content_arr = [];
 
 
-
-
-
 $('.btn').attr('disabled',true);
 $('#myfile1').attr('disabled',true);
 
@@ -34,30 +31,35 @@ function namefunc(e){
 
   name = $('#m').val();
   $('#m').val('');
+  $('#send').off("click",namefunc);
   //console.log(text)
   botui.message.human({
     delay: 1000,
     content: name
+
   }).then(function(){
+
     botui.message
     .bot({
       delay: 1000,
       content: "Oh,"+name
     })
+
   }).then(function(e){
-      
-      $('#send').attr('disabled',false)
+    //$('#send').attr('disabled',false)
   }).then(function(){
+
     botui.message
     .bot({
       delay: 2000,
       content: "What’s your email?"
     })  
+
     $('#send').on("click",emailfunc);
   })
-  $('#send').attr('disabled', 'disabled');
-  $('#send').off("click",namefunc);
-  e.preventDefault();
+  //$('#send').attr('disabled', 'disabled');
+  
+  //e.preventDefault();
 
 }
 
@@ -65,6 +67,8 @@ function emailfunc(e){
 
   email = $('#m').val();
   $('#m').val('');
+  $('#send').off("click",emailfunc);
+
   botui.message.human({
     delay: 100,
     content: email
@@ -87,30 +91,31 @@ function emailfunc(e){
           content: "Or, you can give us your CV."
         })
   }).then(function(){
-    var div_animate = $("#reminder")
-    div_animate.animate({left: '5px'}, "slow");
-  })
-  
-  $('#send').off("click",emailfunc);
-  $('.btn').attr('disabled',false);
-  $('#myfile1').attr('disabled',false);
+    setTimeout(() => {
 
-  $('#send').on("click",CV_type);
+      var div_animate = $("#reminder")
+      div_animate.animate({left: '5px'}, "slow");
+      $('.btn').attr('disabled',false);
+      $('#myfile1').attr('disabled',false);
+      $('#send').on("click",CV_type);
+    }, 4000);    
+  }) 
   //$('#send').attr('disabled',true);
-  e.preventDefault();
-
+  //e.preventDefault();
 }
 
 
 function CV_type(){
+
   $('.btn').attr('disabled',true);
   $('#myfile1').attr('disabled',true);
   $("#reminder").hide()
-  
+
    var content =  $('#m').val();
    $('#m').val('');
    content_arr.push(content)
-   console.log(content_arr)
+
+   //console.log(content_arr)
    botui.message
     .human({
       delay: 1000,
@@ -162,35 +167,23 @@ function CV_type(){
             .bot({
               delay: 1000,
               content: "there are some jobs for you"
-          })
-      })
-
-
-
+            })
+        })
     }
-
   })
 }
 
 function Filed_type(){
+  $('#send').off("click",Filed_type);
   var Filed =  $('#m').val();
   $('#m').val('');
   alert(Filed);
 
-  
 
 }
 
 
-
-
-
-
-
-
- 
-
-  $("#myfile1").change(function(){
+$("#myfile1").change(function(){
 
     $("#reminder").hide()
 
@@ -260,8 +253,8 @@ function CV_pdf_continue(){
                 .bot({
                   delay: 1000,
                   content: "there are some jobs for you"
-              })
-        })
+                })
+            })
       }
     })
 
