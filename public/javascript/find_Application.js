@@ -3,6 +3,7 @@ var company_name;
 var job_name;
 var content_arr = [];
 
+$(".alert.alert-warning").hide()
 $('.btn').attr('disabled',true);
 $('#myfile1').attr('disabled',true);
 
@@ -20,7 +21,19 @@ botui.message
 
 function companyfunc(e){
   company_name = $('#m').val();
-  $('#m').val('');
+
+  if (company_name==''){
+
+    $(".alert.alert-warning").html("<strong>Warning!</strong>  Not null or just ONE letter")
+    $('#m').val('');
+    $(".alert.alert-warning").show() 
+
+    return false
+  }
+  $(".alert.alert-warning").hide() 
+  $('#send').off("click",companyfunc);
+
+
   botui.message.human({
     delay: 1000,
     content: company_name
@@ -47,7 +60,18 @@ function companyfunc(e){
 function want_recruit() {
 
   job_name = $('#m').val();
-  $('#m').val('');
+
+  if (job_name==''){
+
+    $(".alert.alert-warning").html("<strong>Warning!</strong>  Not null or just ONE letter")
+    $('#m').val('');
+    $(".alert.alert-warning").show() 
+
+    return false
+  }
+  $(".alert.alert-warning").hide() 
+  $('#send').off("click",companyfunc);
+  
   $('#send').off("click",want_recruit);
   botui.message.human({
     delay: 1000,

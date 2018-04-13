@@ -3,6 +3,8 @@ var email;
 var name;
 var content_arr = [];
 
+$(".alert.alert-warning").hide()
+
 
 $('.btn').attr('disabled',true);
 $('#myfile1').attr('disabled',true);
@@ -20,18 +22,36 @@ botui.message
       delay: 1000,
       content: "What's your name"
       })
+      
     }).then(function(){
+
+
       $('#send').on("click",namefunc);
   })
+
+  console.log($('#m').val())
 
 
  
 
 function namefunc(e){
 
+
+
   name = $('#m').val();
+  if (name==''){
+
+    $(".alert.alert-warning").html("<strong>Warning!</strong>  Not null or just ONE letter")
+
+
+    $(".alert.alert-warning").show() 
+
+    return false
+  }
+  $(".alert.alert-warning").hide() 
   $('#m').val('');
   $('#send').off("click",namefunc);
+
   //console.log(text)
   botui.message.human({
     delay: 1000,
@@ -67,7 +87,28 @@ function emailfunc(e){
 
   email = $('#m').val();
   $('#m').val('');
-  $('#send').off("click",emailfunc);
+
+  function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+  }
+
+  console.log(validateEmail(email))
+
+  if (validateEmail(email)==false){
+        
+    $(".alert.alert-warning").html("<strong>Warning!</strong>  Email is not valid ")
+
+
+    $(".alert.alert-warning").show() 
+
+    return false
+
+  }else{
+    $(".alert.alert-warning").hide() 
+    $('#send').off("click",emailfunc);
+  }
+
 
   botui.message.human({
     delay: 100,
