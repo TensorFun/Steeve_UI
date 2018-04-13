@@ -3,6 +3,8 @@ var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var express = require('express');
 
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+
 
 
 
