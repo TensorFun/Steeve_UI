@@ -9,7 +9,7 @@
   background: none;
   padding: 3px;
   position: fixed;
-  bottom: 0;
+  bottom: 5px;
   height: 5%;
   width: 100%;
 }
@@ -56,10 +56,8 @@
 }
 
 .input-control {
-  border: 0;
-  padding: 10px;
-  /* margin-right: 0.5%;
-  margin-left: 0.5%; */
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .upload-btn-wrapper {
