@@ -1,31 +1,78 @@
-#Footer {height: 100px;position: relative;margin-top: -100px;}
-
-.formesg_btn { width: 9%; background: rgb(130, 224, 255);  }
-
-.input-group{
-
-  background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; 
-
+#Footer {
+  height: 100px;
+  position: relative;
+  margin-top: -100px;
 }
-  
+
+.input-group {
+  background: #000;
+  display: inline-flex;
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 750px) {
+  .side-col {
+    width: 9%;
+    min-width: 50px;
+  }
+  .main-col {
+    width: 73%;
+  }
+}
+@media screen and (max-width: 419px) {
+  .side-col {
+    width: 12%;
+    min-width: 50px;
+  }
+  .main-col {
+    width: 53%;
+  }
+}
+@media screen and (min-width: 751px) {
+  .side-col {
+    width: 5%;
+    min-width: 50px;
+  }
+  .main-col {
+    width: 85%;
+  }
+}
+
+.btn{	
+  padding-top: 9px;
+}
+
+.formesg_btn {
+  position: relative;
+  border: none;
+  background: rgb(130, 224, 255);
+  border-radius: 5px;
+}
+.formesg_btn:hover {
+  cursor: pointer;
+}
+.formesg_btn:focus {
+  outline: 0;
+}
+
 .input-control {
-  border: 0; 
-  padding: 10px; 
-  width: 86%;
-  margin-right: .5%; 
+  border: 0; 	
+  padding: 10px; 	
+  margin-right: .5%; 	
   margin-left: .5%;
-  
- }
+  border-radius: 5px;
+}
 
-
- .upload-btn-wrapper {
+.upload-btn-wrapper {
   position: relative;
   overflow: hidden;
   display: inline-block;
 }
 
-
-.upload-btn-wrapper input[type=file] {
+.upload-btn-wrapper input[type="file"] {
   font-size: 100px;
   position: absolute;
   left: 0;
@@ -33,21 +80,14 @@
   opacity: 0;
 }
 
-.btn{
-  padding-top: 9px
-}
-
-
-#reminder{
-
-  border:5px orange solid;
-  padding:10px;
-  margin:15px 0px;
-  position:absolute;
-  left:-280px;
+#reminder {
+  border: 5px orange solid;
+  padding: 10px;
+  margin: 15px 0px;
+  position: absolute;
+  left: -280px;
   margin-bottom: 60px;
 }
-
 
 .helper {
   display: inline-block;
@@ -55,15 +95,7 @@
   vertical-align: middle;
 }
 
-#reminder_word{
-
-  font-weight:bold;
-  color: #000
-
-
+#reminder_word {
+  font-weight: bold;
+  color: #000;
 }
-
-
- 
-
-  
