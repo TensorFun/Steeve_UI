@@ -199,6 +199,8 @@ function CV_type(){
   }).then(function(res){
     if(res.value == 'Yes') {
 
+      get_job()
+
       botui.message
         .bot({
           delay: 1000,
@@ -214,6 +216,18 @@ function CV_type(){
   })
 }
 
+
+function get_job(){
+
+  //console.log(name)
+  //console.log(email)
+  var strr = content_arr.join("\n")
+  var Data = JSON.stringify({username: name,email:email,CV:strr})
+  console.log(Data)
+
+
+}
+
 function Filed_type(){
   $('#send').off("click",Filed_type);
   var Filed =  $('#m').val();
@@ -224,6 +238,8 @@ function Filed_type(){
 }
 
 
+
+
 $("#myfile1").change(function(){
 
     $("#reminder").hide()
@@ -231,8 +247,11 @@ $("#myfile1").change(function(){
 
     var fd = new FormData(),
     myFile = document.getElementById("myfile1").files[0];
-
+    fd.append('username',name)
+    fd.append('email',email)
     fd.append( 'file',  myFile);
+    console.log(fd)
+    
     
     var ajaxUrl = "http://nlp-ultron.cs.nthu.edu.tw:9997/CV";
     //console.log(fromData)
