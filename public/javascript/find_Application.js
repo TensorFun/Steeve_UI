@@ -21,6 +21,7 @@ botui.message
 
 function companyfunc(e){
   company_name = $('#m').val();
+  $('#m').val('');
 
   if (company_name==''){
 
@@ -60,6 +61,7 @@ function companyfunc(e){
 function want_recruit() {
 
   job_name = $('#m').val();
+  $('#m').val('');
 
   if (job_name==''){
 
@@ -133,10 +135,40 @@ function Type_content(){
       content: "There are some applicants for you"
     })
   }).then(function(){
+
+    get_user()
     
   })
 
 }
+
+function get_user(){
+  
+  var fd = new FormData()
+  var strr = content_arr.join("\n")
+  //var Data = JSON.stringify({company_name:company_name,job_name:job_name,content:strr})
+  //fd.append('username',name)
+  //fd.append('email',email)
+  fd.append('post',strr)
+  //console.log(Data)
+  $.ajax({
+    type:"POST",
+    url: 'https://steevebot.ml/Recruit',
+    data: fd,
+    contentType : false,
+    processData : false,
+    success: function(data){
+      console.log(data);
+    },
+    error: function() { 
+      console.log('process error');
+    } 
+  })
+}
+
+
+
+
 
 
 

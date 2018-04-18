@@ -33,7 +33,7 @@
 }
 @media screen and (min-width: 751px) {
   .side-col {
-    width: 5%;
+    width: 7%;
     min-width: 50px;
   }
   .main-col {
@@ -61,8 +61,8 @@
 .input-control {
   border: 0; 	
   padding: 10px; 	
-  margin-right: .5%; 	
-  margin-left: .5%;
+  margin-right: .8%; 	
+  margin-left: -1%;
   border-radius: 5px;
 }
 

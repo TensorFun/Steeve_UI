@@ -29,7 +29,6 @@ botui.message
       $('#send').on("click",namefunc);
   })
 
-  console.log($('#m').val())
 
 
  
@@ -93,7 +92,7 @@ function emailfunc(e){
   return re.test(email);
   }
 
-  console.log(validateEmail(email))
+  //console.log(validateEmail(email))
 
   if (validateEmail(email)==false){
         
@@ -219,13 +218,27 @@ function CV_type(){
 
 function get_job(){
 
-  //console.log(name)
-  //console.log(email)
+  var fd = new FormData()
   var strr = content_arr.join("\n")
-  var Data = JSON.stringify({username: name,email:email,CV:strr})
-  console.log(Data)
-
-
+  fd.append('username',name)
+  fd.append('email',email)
+  fd.append('CV',strr)
+  //var Data = JSON.stringify({username: name,email:email,CV:strr})
+  //console.log(Data)
+  $.ajax({
+    type:"POST",
+    url: 'http://nlp-ryze.cs.nthu.edu.tw:9998/',
+    data: fd,
+    contentType : false,
+    processData : false,
+    //dataType: 'json',
+    success: function(data){
+      console.log(data);
+    },
+    error: function() { 
+      console.log('process error');
+    } 
+  })
 }
 
 function Filed_type(){
@@ -250,10 +263,11 @@ $("#myfile1").change(function(){
     fd.append('username',name)
     fd.append('email',email)
     fd.append( 'file',  myFile);
-    console.log(fd)
+    //console.log(fd)
     
     
-    var ajaxUrl = "http://nlp-ultron.cs.nthu.edu.tw:9997/CV";
+    //var ajaxUrl = "http://nlp-ultron.cs.nthu.edu.tw:9997/CV";
+    var ajaxUrl = 'https://steevebot.ml/CV/pdf';
     //console.log(fromData)
     $.ajax({
       url : ajaxUrl,
