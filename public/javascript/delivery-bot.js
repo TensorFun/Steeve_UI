@@ -164,29 +164,7 @@ function CV_type() {
     })
     .then(function(res) {
       if (res.value == "No") {
-        $("#send").off("click", CV_type);
-        botui.message.bot({
-          delay: 2000,
-          content:
-            name +
-            ", Is there any field you prefer to work in ? For example, front end , security …"
-        });
-        $("#send").on("click", Filed_type);
-        return botui.action.button({
-          delay: 2000,
-          action: [
-            {
-              text: "Fine for me",
-              value: "Yes"
-            }
-          ]
-        });
-      }
-    })
-    .then(function(res) {
-      if (res.value == "Yes") {
         get_job();
-
         botui.message
           .bot({
             delay: 1000,
@@ -198,8 +176,10 @@ function CV_type() {
               content: "There are some jobs for you"
             });
           });
+        
       }
-    });
+    })
+    
 }
 
 function get_job() {
