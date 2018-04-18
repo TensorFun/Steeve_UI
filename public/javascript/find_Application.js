@@ -2,6 +2,7 @@ const botui = new BotUI("delivery-bot");
 let company_name;
 let job_name;
 let content_arr = [];
+var data ;
 
 const mes = $("#m");
 const send = $("#send");
@@ -163,6 +164,7 @@ function Type_content() {
 function get_user() {
   var fd = new FormData();
   var strr = content_arr.join("\n");
+  console.log(strr)
   //var Data = JSON.stringify({company_name:company_name,job_name:job_name,content:strr})
   //fd.append('username',name)
   //fd.append('email',email)
@@ -175,13 +177,101 @@ function get_user() {
     data: fd,
     contentType: false,
     processData: false,
-    success: function(data) {
-      console.log(data);
+    success: function(Data) {
+
+      data = Data
+      console.log(data.length)
+      
+      //console.log(data[key_word])
+      if (data.length=0){
+        botui.message.bot({
+          delay: 2000,
+          content: "Don't match anything.........."
+      })
+      break;
+      }
+
+      else{
+
+      for (i = 0 ; i < 3 ; i++){
+
+        botui.message
+          .bot({
+              delay: 1000,
+              content: data[i].username + '</br>' + data[i].email +'</br>'+ data[i].PL 
+        })
+
+      }
+
+    
+    botui.message.bot({
+        delay: 2000,
+        content: "wanna see more applicants"
+    }).then(function() {
+      console.log(data)
+      
+      return botui.action.button({
+        delay: 1000,
+        action: [
+          {
+            text: "Sure!",
+            value: "Y"
+          }, {
+            text: 'Nope',
+            value: 'N'
+          }
+        ]
+      })
+    }).then(function (res) {
+      console.log(data)
+
+      if(res.value == 'Y') {
+
+        
+        for (i = 4 ; i <= data.length ; i++){
+
+          if(i<=6){
+
+          botui.message
+            .bot({
+                delay: 1000,
+                content: data[i].username + '</br>' + data[i].email +'</br>'+ data[i].PL  
+          })
+
+        }
+  
+        }
+      } else {
+
+        botui.message.bot({
+          delay: 1000,
+          content: "All the best to getting a suitable job."
+        });
+
+      }
+
+    }).then(function(){
+
+      return botui.action.button({
+        delay: 1000,
+        action: [
+          {
+            text: "Leave",
+            value: "L"
+          }
+        ]
+      })
+
+    })
+
+  }
+      
     },
     error: function() {
       console.log("process error");
     }
   });
+
 }
 
 mes.keydown(function(event) {
