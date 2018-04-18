@@ -115,7 +115,7 @@ function Type_content(){
     return botui.action.button({
     delay: 1000,
     action: [{
-      text: '“Nope, that’s all”',
+      text: 'Nope, that’s all',
       value: 'No'
       }]
     })

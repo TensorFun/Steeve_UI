@@ -156,7 +156,7 @@ function CV_type() {
         delay: 1000,
         action: [
           {
-            text: "“Nope, that’s all”",
+            text: "Nope, that’s all",
             value: "No"
           }
         ]
