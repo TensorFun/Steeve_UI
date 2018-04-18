@@ -1,12 +1,14 @@
-var botui = new BotUI("delivery-bot");
-var email;
-var name;
-var content_arr = [];
+const botui = new BotUI("delivery-bot");
+let name, email;
+let content_arr = [];
+
+const mes = $('#m');
+const send = $('#send');
+const reminder = $("#reminder");
 
 $(".alert.alert-warning").hide();
-
 $(".btn").attr("disabled", true);
-$("#myfile1").attr("disabled", true);
+$("#cv-file").attr("disabled", true);
 
 botui.message
   .bot({
@@ -26,21 +28,21 @@ botui.message
         });
       })
       .then(function() {
-        $("#send").on("click", namefunc);
+        send.on("click", namefunc);
       });
   });
 
 function namefunc(e) {
-  name = $("#m").val();
+  name = mes.val();
   if (!name.trim()) {
-    $(".alert.alert-warning").html(
-      "<strong>Warning!</strong>  Please input your name."
-    ).show();
+    $(".alert.alert-warning")
+      .html("<strong>Warning!</strong>  Please input your name.")
+      .show();
     return false;
   }
   $(".alert.alert-warning").hide();
-  $("#m").val("");
-  $("#send").off("click", namefunc);
+  mes.val("");
+  send.off("click", namefunc);
 
   //console.log(text)
   botui.message
@@ -55,7 +57,7 @@ function namefunc(e) {
       });
     })
     .then(function(e) {
-      //$('#send').attr('disabled',false)
+      // send.attr('disabled',false)
     })
     .then(function() {
       botui.message.bot({
@@ -63,16 +65,16 @@ function namefunc(e) {
         content: "Then, what’s your email?"
       });
 
-      $("#send").on("click", emailfunc);
+send.on("click", emailfunc);
     });
-  //$('#send').attr('disabled', 'disabled');
+  //send.attr('disabled', 'disabled');
 
   //e.preventDefault();
 }
 
 function emailfunc(e) {
-  email = $("#m").val();
-  $("#m").val("");
+  email = mes.val();
+  mes.val("");
 
   function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -91,7 +93,7 @@ function emailfunc(e) {
     return false;
   } else {
     $(".alert.alert-warning").hide();
-    $("#send").off("click", emailfunc);
+    send.off("click", emailfunc);
   }
 
   botui.message
@@ -119,24 +121,23 @@ function emailfunc(e) {
     })
     .then(function() {
       setTimeout(() => {
-        var div_animate = $("#reminder");
-        div_animate.animate({ left: "5px" }, "slow");
+        reminder.show();
         $(".btn").attr("disabled", false);
-        $("#myfile1").attr("disabled", false);
-        $("#send").on("click", CV_type);
+        $("#cv-file").attr("disabled", false);
+        send.on("click", CV_type);
       }, 4000);
     });
-  //$('#send').attr('disabled',true);
+  //send.attr('disabled',true);
   //e.preventDefault();
 }
 
 function CV_type() {
   $(".btn").attr("disabled", true);
-  $("#myfile1").attr("disabled", true);
-  $("#reminder").hide();
+  $("#cv-file").attr("disabled", true);
+  reminder.hide();
 
-  var content = $("#m").val();
-  $("#m").val("");
+  var content = mes.val();
+  mes.val("");
   content_arr.push(content);
 
   //console.log(content_arr)
@@ -176,10 +177,8 @@ function CV_type() {
               content: "There are some jobs for you"
             });
           });
-        
       }
-    })
-    
+    });
 }
 
 function get_job() {
@@ -207,17 +206,17 @@ function get_job() {
 }
 
 function Filed_type() {
-  $("#send").off("click", Filed_type);
-  var Filed = $("#m").val();
-  $("#m").val("");
+  send.off("click", Filed_type);
+  var Filed = mes.val();
+  mes.val("");
   alert(Filed);
 }
 
-$("#myfile1").change(function() {
-  $("#reminder").hide();
+$("#cv-file").change(function() {
+  reminder.hide();
 
   var fd = new FormData(),
-    myFile = document.getElementById("myfile1").files[0];
+    myFile = $("#cv-file").files[0];
   fd.append("username", name);
   fd.append("email", email);
   fd.append("file", myFile);
@@ -236,10 +235,10 @@ $("#myfile1").change(function() {
     processData: false
   })
     .done(function(response) {
-      $("#send").off("click", CV_type);
+      send.off("click", CV_type);
       $(".btn").attr("disabled", true);
-      $("#myfile1").attr("disabled", true);
-      $("#send").off("click", Filed_type);
+      $("#cv-file").attr("disabled", true);
+      send.off("click", Filed_type);
 
       console.log(response);
       CV_pdf_continue();
@@ -263,7 +262,7 @@ function CV_pdf_continue() {
           name +
           ", Is there any field you prefer to work in ? For example, front end , security …"
       });
-      $("#send").on("click", Filed_type);
+      send.on("click", Filed_type);
     })
     .then(function() {
       return botui.action.button({
@@ -293,8 +292,8 @@ function CV_pdf_continue() {
     });
 }
 
-$("#m").keydown(function(event) {
+mes.keydown(function(event) {
   if (event.which == 13) {
-    $("#send").click();
+    send.click();
   }
 });

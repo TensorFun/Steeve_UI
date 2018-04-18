@@ -1,13 +1,12 @@
-html, body {
-  margin: 0;
-  padding: 0;
+html,
+body {
 }
 
 body {
+  margin: 0;
+  padding: 0;
   background-image: url("../img/red.png");
 }
-
-
 
 iframe {
   width: 100%;
@@ -18,7 +17,6 @@ iframe {
   width: 400px;
   height: 700px;
   padding-bottom: 120px;
-
 }
 
 .botui-container {
@@ -27,8 +25,8 @@ iframe {
   border-radius: 5px;
 }
 .botui-message-content {
-  color: #FFFFFF;
-  background-color:#8f1325;
+  color: #ffffff;
+  background-color: #8f1325;
 }
 
 .botui-message-content.human {
@@ -39,64 +37,71 @@ iframe {
 }
 
 .botui-actions-text-input {
-  color: #FFFFFF;
-  border-bottom: 1px solid #3498DB;
+  color: #ffffff;
+  border-bottom: 1px solid #3498db;
 }
 
 .botui-actions-buttons-button {
-  line-height: 1 !important;
-  background-color: #3498DB;
+  height: 35px;
+  background: #f7e4d6;
+  border-radius: 10px;
+  box-shadow: 3px 3px #877f80;
+  color: #8f1325;
+  font: normal 700 1.3rem/1 "Gill Sans", "Open Sans", sans-serif;
 }
 
 .botui-message-content-link {
-  color: #F1C40F;
+  color: #f1c40f;
 }
 
 .img-circle {
   border-radius: 50%;
 }
 
-.button {
-
-  background:    #ffffff;
-  border:        1px solid #8f1325;
-  border-radius: 5px;
-  box-shadow:    0 1px #bbccee;
-  padding:       20px 20px;
-  color:         #8f1325;
-  display:       inline-block;
-  font:          normal 700 24px/1 "Open Sans", sans-serif;
-  text-align:    center;
-  text-shadow:   none;
-  width:250px
+.mode-btn {
+  background: none;
+  border: 1px solid #8f1325;
+  border-radius: 30px;
+  box-shadow: 2px 2px #877f80;
+  padding: 20px auto;
+  color: #8f1325;
+  display: inline-block;
+  font: normal 700 1.3rem/1 "Gill Sans", "Open Sans", sans-serif;
+  text-align: center;
+  text-shadow: none;
+  height: 3rem;
+  width: 13rem;
+}
+.mode-btn:hover {
+  background: #8f1325;
+  box-shadow: none;
+  color: #ffffff;
 }
 
-.flex{
-  text-align : center;
-  
-}
-#target {
-  margin-right:30px;
-}
-#target1 {
-  margin-left:30px;
+#job-btn {
+  margin-right: 30px;
 }
 
-
-
-.p_change
-{
-margin-top: 10px;
-margin-bottom: 50px;
-color: rgb(255, 255, 255);
-font-size: 50px;
-text-align:    center;
-text-shadow: rgb(150, 150, 150) 1px 3px 0px, rgb(171, 168, 168) 1px 13px 5px;
+#applicant-btn {
+  margin-left: 30px;
 }
-.text_theme_color{
-  color : #8f1325;
+
+.flex {
+  text-align: center;
 }
-.border_theme_color{
+
+.p_change {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  color: rgb(255, 255, 255);
+  font-size: 50px;
+  text-align: center;
+  text-shadow: rgb(150, 150, 150) 1px 3px 0px, rgb(171, 168, 168) 1px 13px 5px;
+}
+.text_theme_color {
+  color: #8f1325;
+}
+.border_theme_color {
   border: solid 1px #8f1325;
 }
 
