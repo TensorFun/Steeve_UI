@@ -3,68 +3,54 @@
 
 <head>
   <meta charset="utf-8">
-  <title>BotUI - Delivery Bot</title>
+  <title>Steeve - Job Matcher</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Steeeeeeeeve Bot by NTHU_NLP">
-
+  <meta name="description" content="Steeve for seeking jobs and applicants">
+  <meta name="author" content="NTHU NLP Lab">
 
   <link rel="stylesheet" href="./build/botui.min.css" />
   <link rel="stylesheet" href="./build/botui-theme-default.css" />
 
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <link rel=stylesheet type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/components-font-awesome/css/fontawesome-all.min.css">
 
-  <link rel=stylesheet type="text/css" href="./css/black.css">
-  <link rel=stylesheet type="text/css" href="./css/style.css">
-  <link rel="stylesheet" href="bower_components/components-font-awesome/css/fontawesome-all.min.css">
-
-
-
+  <link rel="stylesheet" type="text/css" href="./css/black.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
 
 </head>
 
 <body>
-  <!-- Image and text -->
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-      <img src="./img/Steeve.png" class="img-circle" width="10%" height="10%" class="d-inline-block align-top" alt=""> Steeve
-    </a>
-  </nav>
 
-
-  <div class='flex'>
-    <img src="./img/Steeve.png" class="img-circle" width="20%" height="20%" style="display:block; margin:auto; margin-top: 100px;">
+  <div id="landing-page" class='flex'>
+    <img src="./img/Steeve.png" id="photo" class="img-circle" width="20%" height="20%">
     <br>
-    <p class=p_change>Hello , I'm Steeve</p>
-    <button id="target" class='button'> Find Job </button>
-    <button id="target1" class='button'> Find Applicant </button>
+    <p class="p_change">Hello! I'm Steeve</p>
+    <p class="description">Are you looking for jobs or applicants for your business?
+      <br> Steeve will offer the most suitable option right away.</p>
+    <button id="job-btn" class='mode-btn'> Find Job </button>
+    <button id="applicant-btn" class='mode-btn'> Find Applicant </button>
   </div>
 
 
   <div class="botui-app-container" id="delivery-bot">
     <bot-ui></bot-ui>
-    <div id="reminder">
-      <span class="helper"></span>
-      <img src="./img/upload1.png" height=50 />
-      <span class="reminder_word">This is CV upload button</span>
-    </div>
-    <div class="alert alert-warning">
-    </div>
   </div>
 
 
-
-
-
-  <div id="Footer" class="mes">
+  <div id="footer" class="mes">
+    <div id="reminder">
+      <span>Upload CV</span>
+    </div>
+    <div class="alert alert-warning"></div>
 
     <div class='input-group'>
       <div class="upload-btn-wrapper side-col">
         <button class="btn">
           <i class="fas fa-cloud-upload-alt"></i>
         </button>
-        <input id="myfile1" type="file" name="myfile" />
+        <input id="cv-file" type="file" name="myfile" />
       </div>
 
       <input id="m" class="input-control main-col" autocomplete="off" />

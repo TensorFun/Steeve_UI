@@ -1,11 +1,25 @@
-#Footer {
+#photo {
+  display: block;
+  margin: auto;
+  margin-top: 100px;
+}
+
+.description {
+  color: #646464;
+  margin-top: 100px;
+  padding-bottom: 50px;
+  font-size: 1.3em;
+  font-weight: 300;
+}
+
+#footer {
   height: 100px;
   position: relative;
   margin-top: -100px;
 }
 
 .input-group {
-  background:#000;
+  background: #000;
   display: inline-flex;
   padding: 3px;
   position: fixed;
@@ -41,7 +55,7 @@
   }
 }
 
-.btn{	
+.btn {
   padding-top: 9px;
 }
 
@@ -59,9 +73,9 @@
 }
 
 .input-control {
-  border: 0; 	
-  padding: 10px; 	
-  margin-right: .8%; 	
+  border: 0;
+  padding: 10px;
+  margin-right: 0.8%;
   margin-left: -1%;
   border-radius: 5px;
 }
@@ -80,22 +94,29 @@
   opacity: 0;
 }
 
-#reminder {
-  border: 5px orange solid;
+#reminder {  
+  display: none;
+  color: #fff;
+  position: fixed;
   padding: 10px;
-  margin: 15px 0px;
-  position: absolute;
-  left: -280px;
-  margin-bottom: 60px;
+  bottom: 70px;
+  left: 10px;
+	background: #3a200e;
+	border-radius: .4em;
+}
+#reminder:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-top-color: #3a200e;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -5px;
+	margin-bottom: -10px;
 }
 
-.helper {
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-}
 
-#reminder_word {
-  font-weight: bold;
-  color: #000;
-}
