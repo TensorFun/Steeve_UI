@@ -64,6 +64,7 @@ iframe {
   border-radius: 30px;
   box-shadow: 2px 2px #877f80;
   padding: 20px auto;
+  margin-bottom: 20px;
   color: #8f1325;
   display: inline-block;
   font: normal 700 1.3rem/1 "Gill Sans", "Open Sans", sans-serif;
@@ -80,9 +81,11 @@ iframe {
 
 #job-btn {
   margin-right: 30px;
+  margin-left: 30px;
 }
 
 #applicant-btn {
+  margin-right: 30px;
   margin-left: 30px;
 }
 
