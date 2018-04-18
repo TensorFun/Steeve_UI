@@ -174,9 +174,10 @@ function CV_type() {
           .then(function() {
             botui.message.bot({
               delay: 1000,
-              content: "There are some jobs for you"
-            });
-          });
+              content: "Wating........"
+            })
+          })
+          
       }
     });
 }
@@ -197,7 +198,75 @@ function get_job() {
     processData: false,
     //dataType: 'json',
     success: function(data) {
-      console.log(data);
+      var key_word = Object.keys(data)[0];
+      //console.log(key_word)
+      //console.log(data)
+      botui.message.add({
+        content: "There are some jobs for you"
+      });
+
+      for (i = 0 ; i < 3 ; i++){
+
+        botui.message
+          .bot({
+              delay: 1000,
+              content: data[key_word][i].Title + '</br>' + data[key_word][i].Employer +'</br>'+ '<a href ="' + data[key_word][i].url +'"> job_link' + '</a>'
+        })
+
+      }
+
+      botui.message.bot({
+        delay: 2000,
+        content: "wanna get more job ?"
+    }).then(function() {
+      return botui.action.button({
+        delay: 1000,
+        action: [
+          {
+            text: "Sure!",
+            value: "Y"
+          }, {
+            text: 'Nope',
+            value: 'N'
+          }
+        ]
+      })
+    }).then(function (res) {
+
+      if(res.value == 'Y') {
+
+        for (i = 3 ; i < 6 ; i++){
+
+          botui.message
+            .bot({
+                delay: 1000,
+                content: data[key_word][i].Title + '</br>' + data[key_word][i].Employer +'</br>'+ '<a href ="' + data[key_word][i].url +'"> job_link' + '</a>'
+          })
+  
+        }
+      } else {
+
+        botui.message.bot({
+          delay: 1000,
+          content: "All the best to getting a suitable job."
+        });
+
+      }
+
+    }).then(function(){
+
+      return botui.action.button({
+        delay: 1000,
+        action: [
+          {
+            text: "Leave",
+            value: "L"
+          }
+        ]
+      })
+
+    })
+      
     },
     error: function() {
       console.log("process error");
@@ -215,22 +284,20 @@ function Filed_type() {
 $("#cv-file").change(function() {
   reminder.hide();
 
-  var fd = new FormData(),
-    myFile = $("#cv-file").files[0];
+  var fd = new FormData()
+  var myFile = $("#cv-file").prop('files')[0];   
+  //console.log(myFile)
   fd.append("username", name);
   fd.append("email", email);
   fd.append("file", myFile);
   //console.log(fd)
 
   var ajaxUrl = "http://nlp-ryze.cs.nthu.edu.tw:9998/CV/pdf";
-  // var ajaxUrl = "https://steevebot.ml/CV/pdf";
-  //console.log(fromData)
+  
   $.ajax({
     url: ajaxUrl,
     type: "POST",
     data: fd,
-    // both 'contentType' and 'processData' parameters are
-    // required so that all data are correctly transferred
     contentType: false,
     processData: false
   })
@@ -240,8 +307,8 @@ $("#cv-file").change(function() {
       $("#cv-file").attr("disabled", true);
       send.off("click", Filed_type);
 
-      console.log(response);
-      CV_pdf_continue();
+      //console.log(response);
+      CV_pdf_continue(response);
     })
     .fail(function() {
       console.log("fail");
@@ -249,34 +316,16 @@ $("#cv-file").change(function() {
     });
 });
 
-function CV_pdf_continue() {
+function CV_pdf_continue(response) {
+  var data = response
+  var key_word = Object.keys(data)[0];
   botui.message
     .bot({
       delay: 2000,
       content: "Submit Successful"
     })
-    .then(function() {
-      botui.message.bot({
-        delay: 2000,
-        content:
-          name +
-          ", Is there any field you prefer to work in ? For example, front end , security …"
-      });
-      send.on("click", Filed_type);
-    })
-    .then(function() {
-      return botui.action.button({
-        delay: 3000,
-        action: [
-          {
-            text: "Fine for me",
-            value: "Yes"
-          }
-        ]
-      });
-    })
     .then(function(res) {
-      if (res.value == "Yes") {
+     
         botui.message
           .bot({
             delay: 1000,
@@ -287,8 +336,74 @@ function CV_pdf_continue() {
               delay: 1000,
               content: "there are some jobs for you"
             });
-          });
-      }
+          }).then(function(){
+
+
+            for (i = 0 ; i < 3 ; i++){
+
+              botui.message
+                .bot({
+                    delay: 1000,
+                    content: data[key_word][i].Title + '</br>' + data[key_word][i].Employer +'</br>'+ '<a href ="' + data[key_word][i].url +'"> job_link' + '</a>'
+              })
+      
+            }
+
+          }).then(function(){
+
+            botui.message.bot({
+              delay: 2000,
+              content: "wanna get more job ?"
+            });
+          }).then(function() {
+            return botui.action.button({
+              delay: 1000,
+              action: [
+                {
+                  text: "Sure!",
+                  value: "Y"
+                }, {
+                  text: 'Nope',
+                  value: 'N'
+                }
+              ]
+            })
+          }).then(function (res) {
+
+            if(res.value == 'Y') {
+
+              for (i = 3 ; i < 6 ; i++){
+
+                botui.message
+                  .bot({
+                      delay: 1000,
+                      content: data[key_word][i].Title + '</br>' + data[key_word][i].Employer +'</br>'+ '<a href ="' + data[key_word][i].url +'"> job_link' + '</a>'
+                })
+        
+              }
+            } else {
+
+              botui.message.bot({
+                delay: 1000,
+                content: "All the best to getting a suitable job."
+              });
+
+            }
+
+          }).then(function(){
+
+            return botui.action.button({
+              delay: 1000,
+              action: [
+                {
+                  text: "Leave",
+                  value: "L"
+                }
+              ]
+            })
+
+          })
+      
     });
 }
 
