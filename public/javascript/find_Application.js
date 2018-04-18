@@ -153,7 +153,8 @@ function get_user(){
   //console.log(Data)
   $.ajax({
     type:"POST",
-    url: 'https://steevebot.ml/Recruit',
+    url: "http://nlp-ryze.cs.nthu.edu.tw:9998/Recruit",
+    // url: 'https://steevebot.ml/Recruit',
     data: fd,
     contentType : false,
     processData : false,

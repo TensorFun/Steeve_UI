@@ -22,7 +22,9 @@ iframe {
 }
 
 .botui-container {
-  background-image: url("../img/red.png");
+  /* background-image: url("../img/red.png"); */
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
 }
 .botui-message-content {
   color: #FFFFFF;
@@ -30,7 +32,10 @@ iframe {
 }
 
 .botui-message-content.human {
-  background-color: #3498DB;
+  border: 1px solid rgba(70, 70, 70, 0.5);
+  color: #a51c30;
+  background: none;
+  /* background-color: #646464; */
 }
 
 .botui-actions-text-input {

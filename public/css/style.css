@@ -5,7 +5,7 @@
 }
 
 .input-group {
-  background: #000;
+  background:#000;
   display: inline-flex;
   padding: 3px;
   position: fixed;
@@ -48,7 +48,7 @@
 .formesg_btn {
   position: relative;
   border: none;
-  background: rgb(130, 224, 255);
+  background: rgb(254, 247, 242);
   border-radius: 5px;
 }
 .formesg_btn:hover {
