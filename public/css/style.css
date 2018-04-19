@@ -2,6 +2,15 @@
   display: block;
   margin: auto;
   margin-top: 100px;
+
+  -webkit-animation: rotateY 2s ease-out;
+  animation: rotateY 2s ease-out;
+}
+@-webkit-keyframes rotateY {
+  from { -webkit-transform: rotateY(90deg); }
+}
+@keyframes rotateY {
+  from { transform: rotateY(90deg); }
 }
 
 .description {
