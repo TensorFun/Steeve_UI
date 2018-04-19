@@ -217,7 +217,9 @@ function get_job() {
               window.location.reload();
             }
           });
-      } else {
+      } 
+
+      else {
         botui.message
           .bot({
             delay: 1000,
@@ -313,12 +315,7 @@ function get_job() {
   });
 }
 
-function Filed_type() {
-  send.off("click", Filed_type);
-  var Filed = mes.val();
-  mes.val("");
-  alert(Filed);
-}
+
 
 $("#cv-file").change(function() {
   reminder.hide();
@@ -393,6 +390,7 @@ function CV_pdf_continue(response) {
           window.location.reload();
         }
       });
+
   } else {
     botui.message
       .bot({

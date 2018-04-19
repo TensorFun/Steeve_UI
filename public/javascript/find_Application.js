@@ -188,8 +188,23 @@ function get_user() {
         botui.message.bot({
           delay: 2000,
           content: "Don't match anything.........."
+      }).then(function() {
+        return botui.action.button({
+          delay: 1000,
+          action: [
+            {
+              text: "Leave",
+              value: "L"
+            }
+          ]
+        });
       })
-       return;
+      .then(function(res) {
+        if (res.value == "L") {
+          window.location.reload();
+        }
+      });
+       
       
       }
 
