@@ -2,8 +2,8 @@ const botui = new BotUI("delivery-bot");
 let name, email;
 let content_arr = [];
 
-const mes = $('#m');
-const send = $('#send');
+const mes = $("#m");
+const send = $("#send");
 const reminder = $("#reminder");
 
 $(".alert.alert-warning").hide();
@@ -65,11 +65,8 @@ function namefunc(e) {
         content: "Then, what’s your email?"
       });
 
-send.on("click", emailfunc);
+      send.on("click", emailfunc);
     });
-  //send.attr('disabled', 'disabled');
-
-  //e.preventDefault();
 }
 
 function emailfunc(e) {
@@ -85,7 +82,7 @@ function emailfunc(e) {
 
   if (validateEmail(email) == false) {
     $(".alert.alert-warning").html(
-      "<strong>Warning!</strong>  Email is not valid "
+      "<strong>Warning!</strong>  Email is not valid"
     );
 
     $(".alert.alert-warning").show();
@@ -165,7 +162,11 @@ function CV_type() {
     })
     .then(function(res) {
       if (res.value == "No") {
-        get_job();    
+        get_job();
+        botui.message.bot({
+          delay: 900,
+          content: "Well..., we are matching..."
+        });
       }
     });
 }
@@ -186,128 +187,125 @@ function get_job() {
     processData: false,
     //dataType: 'json',
     success: function(data) {
-
       var key_word = Object.keys(data)[0];
 
-      console.log(key_word)
-      
+      console.log(key_word);
 
       botui.message.bot({
-        content: "Submiting sucessful!!"
+        content: "Submitting successfully!!"
       });
 
-      if (typeof key_word == 'undefined'){
-
-        botui.message.bot({
-          delay: 500,
-          content: "Don't match anything.........."
-      }).then(function(){
-
-        return botui.action.button({
-          delay: 1000,
-          action: [
-            {
-              text: "Leave",
-              value: "L"
-            }
-          ]
-        })
-      }).then(function (res) {
-          if(res.value == 'L') {window.location.reload();}
-      })
-       
-      }
-
-      else{
-
-
-      botui.message
-      .bot({
-        delay: 1000,
-        content: "Hi, " + name
-      })
-      .then(function() {
-        botui.message.bot({
-          delay: 1000,
-          content: "Waiting.........."
-        })
-      }).then(function(){
-
-        botui.message.add({
-          delay: 1000,
-          content: "There are some jobs for you"
-        });
-
-      })
-
-      
-
-      for (i = 0 ; i < 3 ; i++){
-
+      if (typeof key_word == "undefined") {
         botui.message
           .bot({
-              delay: 1000,
-              content: data[key_word][i].Title + '</br>' + data[key_word][i].Employer +'</br>'+ '<a href ="' + data[key_word][i].url +'"> job_link' + '</a>'
-        })
-
-      }
-
-      botui.message.bot({
-        delay: 2000,
-        content: "wanna get more job ?"
-    }).then(function() {
-      return botui.action.button({
-        delay: 1000,
-        action: [
-          {
-            text: "Sure!",
-            value: "Y"
-          }, {
-            text: 'Nope',
-            value: 'N'
-          }
-        ]
-      })
-    }).then(function (res) {
-
-      if(res.value == 'Y') {
-
-        for (i = 3 ; i < 6 ; i++){
-
-          botui.message
-            .bot({
-                delay: 1000,
-                content: data[key_word][i].Title + '</br>' + data[key_word][i].Employer +'</br>'+ '<a href ="' + data[key_word][i].url +'"> job_link' + '</a>'
+            delay: 500,
+            content: "Sorry, we don't match anything..."
           })
-  
-        }
+          .then(function() {
+            return botui.action.button({
+              delay: 1000,
+              action: [
+                {
+                  text: "Leave",
+                  value: "L"
+                }
+              ]
+            });
+          })
+          .then(function(res) {
+            if (res.value == "L") {
+              window.location.reload();
+            }
+          });
       } else {
+        botui.message
+          .bot({
+            delay: 1000,
+            content: "Hi, " + name
+          })
+          .then(function() {
+            botui.message.add({
+              delay: 1000,
+              content: "There are some jobs for you!"
+            });
+          })
+          .then(function() {
+            for (i = 0; i < 3; i++) {
+              botui.message.bot({
+                delay: 1000,
+                content:
+                  data[key_word][i].Title +
+                  "</br>" +
+                  data[key_word][i].Employer +
+                  "</br>" +
+                  '<a href="' +
+                  data[key_word][i].url +
+                  '" target="_blank"> Job Link' +
+                  "</a>"
+              });
+            }
 
-        botui.message.bot({
-          delay: 1000,
-          content: "All the best to getting a suitable job."
-        });
-
+            botui.message
+              .bot({
+                delay: 2000,
+                content: "Wanna get more job?"
+              })
+              .then(function() {
+                return botui.action.button({
+                  delay: 1000,
+                  action: [
+                    {
+                      text: "Sure!",
+                      value: "Y"
+                    },
+                    {
+                      text: "Nope",
+                      value: "N"
+                    }
+                  ]
+                });
+              })
+              .then(function(res) {
+                if (res.value == "Y") {
+                  for (i = 3; i < 6; i++) {
+                    botui.message.bot({
+                      delay: 1000,
+                      content:
+                        data[key_word][i].Title +
+                        "</br>" +
+                        data[key_word][i].Employer +
+                        "</br>" +
+                        '<a href ="' +
+                        data[key_word][i].url +
+                        '" target="_blank"> Job Link' +
+                        "</a>"
+                    });
+                  }
+                } else {
+                  botui.message.bot({
+                    delay: 1000,
+                    content: "All the best to getting a suitable job."
+                  });
+                }
+              })
+              .then(function() {
+                return botui.action.button({
+                  delay: 1000,
+                  action: [
+                    {
+                      text: "Leave",
+                      value: "L"
+                    }
+                  ]
+                });
+              })
+              .then(function(res) {
+                if (res.value == "L") {
+                  window.location.reload();
+                }
+              });
+          });
       }
-
-    }).then(function(){
-
-      return botui.action.button({
-        delay: 1000,
-        action: [
-          {
-            text: "Leave",
-            value: "L"
-          }
-        ]
-      })
-
-    }).then(function (res) {
-      if(res.value == 'L') {window.location.reload();}
-    })
-
-  }
-      
     },
     error: function() {
       console.log("process error");
@@ -324,18 +322,16 @@ function Filed_type() {
 
 $("#cv-file").change(function() {
   reminder.hide();
-  
-  $(".btn").attr("disabled", true);
 
+  $(".btn").attr("disabled", true);
 
   botui.message.bot({
     delay: 1000,
     content: "Waiting........"
-  })
+  });
 
-
-  var fd = new FormData()
-  var myFile = $("#cv-file").prop('files')[0];   
+  var fd = new FormData();
+  var myFile = $("#cv-file").prop("files")[0];
   //console.log(myFile)
   fd.append("username", name);
   fd.append("email", email);
@@ -343,7 +339,7 @@ $("#cv-file").change(function() {
   //console.log(fd)
 
   var ajaxUrl = "http://nlp-ryze.cs.nthu.edu.tw:9998/CV/pdf";
-  
+
   $.ajax({
     url: ajaxUrl,
     type: "POST",
@@ -367,124 +363,125 @@ $("#cv-file").change(function() {
 });
 
 function CV_pdf_continue(response) {
-  var data = response
+  var data = response;
   var key_word = Object.keys(data)[0];
 
-  botui.message
-    .bot({
-      delay: 500,
-      content: "Submit Successful"
-    })
+  botui.message.bot({
+    delay: 500,
+    content: "Submit Successfully"
+  });
 
-
-  if (typeof key_word == 'undefined'){
-
-    botui.message.bot({
-      delay: 2000,
-      content: "Don't match anything.........."
-  }).then(function(){
-
-    return botui.action.button({
-      delay: 1000,
-      action: [
-        {
-          text: "Leave",
-          value: "L"
-        }
-      ]
-    })
-  }).then(function (res) {
-      if(res.value == 'L') {window.location.reload();}
-  })
-   
-  }
-
-  else{
-
-
-    
-     
+  if (typeof key_word == "undefined") {
     botui.message
-        .bot({
+      .bot({
+        delay: 2000,
+        content: "Don't match anything.........."
+      })
+      .then(function() {
+        return botui.action.button({
           delay: 1000,
-          content: "Hi, " + name
-        })
-        .then(function() {
-          botui.message.bot({
-            delay: 1000,
-            content: "there are some jobs for you"
-          });
-        }).then(function(){
-
-
-          for (i = 0 ; i < 3 ; i++){
-
-            botui.message
-              .bot({
-                  delay: 1000,
-                  content: data[key_word][i].Title + '</br>' + data[key_word][i].Employer +'</br>'+ '<a href ="' + data[key_word][i].url +'"> job_link' + '</a>'
-            })
-    
-          }
-
-        }).then(function(){
-
-          botui.message.bot({
-            delay: 1000,
-            content: "wanna get more job ?"
-          });
-        }).then(function() {
-          return botui.action.button({
-            delay: 1000,
-            action: [
-              {
-                text: "Sure!",
-                value: "Y"
-              }, {
-                text: 'Nope',
-                value: 'N'
-              }
-            ]
-          })
-        }).then(function (res) {
-
-          if(res.value == 'Y') {
-
-            for (i = 3 ; i < 6 ; i++){
-
-              botui.message
-                .bot({
-                    delay: 1000,
-                    content: data[key_word][i].Title + '</br>' + data[key_word][i].Employer +'</br>'+ '<a href ="' + data[key_word][i].url +'"> job_link' + '</a>'
-              })
-      
+          action: [
+            {
+              text: "Leave",
+              value: "L"
             }
-          } else {
-
+          ]
+        });
+      })
+      .then(function(res) {
+        if (res.value == "L") {
+          window.location.reload();
+        }
+      });
+  } else {
+    botui.message
+      .bot({
+        delay: 1000,
+        content: "Hi, " + name
+      })
+      .then(function() {
+        botui.message.bot({
+          delay: 1000,
+          content: "there are some jobs for you"
+        });
+      })
+      .then(function() {
+        for (i = 0; i < 3; i++) {
+          botui.message.bot({
+            delay: 1000,
+            content:
+              data[key_word][i].Title +
+              "</br>" +
+              data[key_word][i].Employer +
+              "</br>" +
+              '<a href ="' +
+              data[key_word][i].url +
+              '" target="_blank"> Job Link' +
+              "</a>"
+          });
+        }
+      })
+      .then(function() {
+        botui.message.bot({
+          delay: 1000,
+          content: "Wanna get more jobs?"
+        });
+      })
+      .then(function() {
+        return botui.action.button({
+          delay: 1000,
+          action: [
+            {
+              text: "Sure!",
+              value: "Y"
+            },
+            {
+              text: "Nope",
+              value: "N"
+            }
+          ]
+        });
+      })
+      .then(function(res) {
+        if (res.value == "Y") {
+          for (i = 3; i < 6; i++) {
             botui.message.bot({
               delay: 1000,
-              content: "All the best to getting a suitable job."
+              content:
+                data[key_word][i].Title +
+                "</br>" +
+                data[key_word][i].Employer +
+                "</br>" +
+                '<a href ="' +
+                data[key_word][i].url +
+                '"> Job Link' +
+                "</a>"
             });
-
           }
-
-        }).then(function(){
-
-          return botui.action.button({
+        } else {
+          botui.message.bot({
             delay: 1000,
-            action: [
-              {
-                text: "Leave",
-                value: "L"
-              }
-            ]
-          })
-
-        }).then(function (res) {
-      if(res.value == 'L') {window.location.reload();}
-        })
-
-      }
+            content: "All the best to getting a suitable job."
+          });
+        }
+      })
+      .then(function() {
+        return botui.action.button({
+          delay: 1000,
+          action: [
+            {
+              text: "Leave",
+              value: "L"
+            }
+          ]
+        });
+      })
+      .then(function(res) {
+        if (res.value == "L") {
+          window.location.reload();
+        }
+      });
+  }
 }
 
 mes.keydown(function(event) {

@@ -58,7 +58,7 @@ function companyfunc(e) {
     .then(function() {
       botui.message.bot({
         delay: 700,
-        content: "Well..."
+        content: "Well..., wait..."
       });
       send.off("click", companyfunc);
     })
@@ -146,12 +146,9 @@ function Type_content() {
         send.off("click", Type_content);
         botui.message.bot({
           delay: 900,
-          content: "Well..."
+          content: "Well..., wait..."
         });
       }
-    })
-    .then(function() {
-      
     })
     .then(function() {
       get_user();
@@ -181,7 +178,7 @@ function get_user() {
 
       botui.message.bot({
         delay: 1000,
-        content: "Submiting sucessful!!"
+        content: "Submitting successfully!!"
       });
 
      
@@ -209,7 +206,7 @@ function get_user() {
         botui.message
           .bot({
               delay: 2000,
-              content: data[i].username + '</br>' + data[i].email +'</br>'+ data[i].PL 
+              content: data[i].username + '</br>' + data[i].email +'</br>' + data[i].PL.replace(/,/g, ", ") 
         })
 
       }
@@ -217,7 +214,7 @@ function get_user() {
     
     botui.message.bot({
         delay: 2000,
-        content: "wanna see more applicants"
+        content: "Wanna see more applicants?"
     }).then(function() {
       console.log(data)
       
@@ -246,7 +243,7 @@ function get_user() {
           botui.message
             .bot({
                 delay: 1000,
-                content: data[i].username + '</br>' + data[i].email +'</br>'+ data[i].PL  
+                content: data[i].username + '</br>' + data[i].email +'</br>'+ data[i].PL.replace(/,/g, ", ") 
           })
 
         }
@@ -271,7 +268,11 @@ function get_user() {
             value: "L"
           }
         ]
-      })
+      }).then(function(res) {
+        if (res.value == "L") {
+          window.location.reload();
+        }
+      });
 
     })
 
