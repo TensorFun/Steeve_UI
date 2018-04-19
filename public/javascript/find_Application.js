@@ -151,10 +151,7 @@ function Type_content() {
       }
     })
     .then(function() {
-      botui.message.bot({
-        delay: 1200,
-        content: "There are some applicants for you, please wait."
-      });
+      
     })
     .then(function() {
       get_user();
@@ -180,24 +177,38 @@ function get_user() {
     success: function(Data) {
 
       data = Data
-      console.log(data.length)
-      
+      //console.log(data.length)
+
+      botui.message.bot({
+        delay: 1000,
+        content: "Submiting sucessful!!"
+      });
+
+     
       //console.log(data[key_word])
-      if (data.length=0){
+      if (data.length==0){
+       
         botui.message.bot({
           delay: 2000,
           content: "Don't match anything.........."
       })
-      break;
+       return;
+      
       }
 
       else{
+
+        botui.message.bot({
+          delay: 1000,
+          content: "There are some applicants for you, please wait."
+        });
+        
 
       for (i = 0 ; i < 3 ; i++){
 
         botui.message
           .bot({
-              delay: 1000,
+              delay: 2000,
               content: data[i].username + '</br>' + data[i].email +'</br>'+ data[i].PL 
         })
 
