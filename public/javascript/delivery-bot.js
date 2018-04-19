@@ -165,19 +165,7 @@ function CV_type() {
     })
     .then(function(res) {
       if (res.value == "No") {
-        get_job();
-        botui.message
-          .bot({
-            delay: 1000,
-            content: "Hi, " + name
-          })
-          .then(function() {
-            botui.message.bot({
-              delay: 1000,
-              content: "Waiting.........."
-            })
-          })
-          
+        get_job();    
       }
     });
 }
@@ -211,7 +199,7 @@ function get_job() {
       if (typeof key_word == 'undefined'){
 
         botui.message.bot({
-          delay: 2000,
+          delay: 500,
           content: "Don't match anything.........."
       }).then(function(){
 
@@ -232,10 +220,27 @@ function get_job() {
 
       else{
 
-      botui.message.add({
+
+      botui.message
+      .bot({
         delay: 1000,
-        content: "There are some jobs for you"
-      });
+        content: "Hi, " + name
+      })
+      .then(function() {
+        botui.message.bot({
+          delay: 1000,
+          content: "Waiting.........."
+        })
+      }).then(function(){
+
+        botui.message.add({
+          delay: 1000,
+          content: "There are some jobs for you"
+        });
+
+      })
+
+      
 
       for (i = 0 ; i < 3 ; i++){
 
@@ -367,7 +372,7 @@ function CV_pdf_continue(response) {
 
   botui.message
     .bot({
-      delay: 2000,
+      delay: 500,
       content: "Submit Successful"
     })
 
@@ -425,7 +430,7 @@ function CV_pdf_continue(response) {
         }).then(function(){
 
           botui.message.bot({
-            delay: 2000,
+            delay: 1000,
             content: "wanna get more job ?"
           });
         }).then(function() {
