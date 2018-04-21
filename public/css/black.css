@@ -8,6 +8,10 @@ body {
   background-image: url("../img/red.png");
 }
 
+a {
+  color: indianred;
+}
+
 iframe {
   width: 100%;
 }
