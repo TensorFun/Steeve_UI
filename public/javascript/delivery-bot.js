@@ -192,6 +192,21 @@ function error_type() {
 
 }
 
+function end_type(){
+  end = mes.val();
+  mes.val("");
+
+  botui.message
+    .human({
+      content: end
+  })
+
+  botui.message
+    .add({
+      content: "I can't understand what you say."
+  })
+}
+
 
 
 
@@ -215,6 +230,10 @@ function get_job() {
     processData: false,
     //dataType: 'json',
     success: function(data) {
+
+      send.off("click", error_type);
+      send.on("click",end_type);
+
       var key_word = Object.keys(data)[0];
 
       console.log(key_word);
@@ -391,6 +410,10 @@ $("#cv-file").change(function() {
 });
 
 function CV_pdf_continue(response) {
+
+  send.off("click", error_type);
+  send.on("click",end_type);
+
   var data = response;
   var key_word = Object.keys(data)[0];
 

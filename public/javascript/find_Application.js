@@ -155,7 +155,28 @@ function Type_content() {
     });
 }
 
+
+
+function end_type(){
+  end = mes.val();
+  mes.val("");
+
+  botui.message
+    .human({
+      content: end
+  })
+
+  botui.message
+    .add({
+      content: "I can't understand what you say."
+  })
+}
+
+
 function get_user() {
+
+  send.on("click", end_type);
+
   var fd = new FormData();
   var strr = content_arr.join("\n");
   console.log(strr)
