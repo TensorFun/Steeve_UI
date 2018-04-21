@@ -1,7 +1,7 @@
 #photo {
   display: block;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 80px;
 
   -webkit-animation: rotateY 2s ease-out;
   animation: rotateY 2s ease-out;
@@ -21,10 +21,16 @@
   font-weight: 300;
 }
 
+.alert.alert-warning{
+  display: none;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+}
+
 #footer {
-  height: 100px;
+  width:100%;
   position: relative;
-  margin-top: -100px;
 }
 
 .input-group {
@@ -85,7 +91,6 @@
   border: 0;
   padding: 10px;
   margin-right: 0.8%;
-  margin-left: -1%;
   border-radius: 5px;
 }
 
