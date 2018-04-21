@@ -70,6 +70,7 @@ function namefunc(e) {
 }
 
 function emailfunc(e) {
+
   email = mes.val();
   mes.val("");
 
@@ -117,12 +118,14 @@ function emailfunc(e) {
       });
     })
     .then(function() {
+
       setTimeout(() => {
         reminder.show();
         $(".btn").attr("disabled", false);
         $("#cv-file").attr("disabled", false);
         send.on("click", CV_type);
       }, 4000);
+
     });
   //send.attr('disabled',true);
   //e.preventDefault();
@@ -162,6 +165,7 @@ function CV_type() {
     })
     .then(function(res) {
       if (res.value == "No") {
+        send.off("click", CV_type);
         get_job();
         botui.message.bot({
           delay: 900,
@@ -171,7 +175,31 @@ function CV_type() {
     });
 }
 
+function error_type() {
+
+  error = mes.val();
+  mes.val("");
+
+  botui.message
+    .human({
+      content: error
+  })
+
+  botui.message
+    .add({
+      content: 'Please waiting'
+  })
+
+}
+
+
+
+
+
 function get_job() {
+
+  send.on("click", error_type);
+
   var fd = new FormData();
   var strr = content_arr.join("\n");
   fd.append("username", name);
@@ -316,8 +344,12 @@ function get_job() {
 }
 
 
-
 $("#cv-file").change(function() {
+
+  send.off("click", CV_type);
+  send.on("click",error_type);
+
+
   reminder.hide();
 
   $(".btn").attr("disabled", true);
@@ -348,7 +380,6 @@ $("#cv-file").change(function() {
       send.off("click", CV_type);
       $(".btn").attr("disabled", true);
       $("#cv-file").attr("disabled", true);
-      send.off("click", Filed_type);
 
       //console.log(response);
       CV_pdf_continue(response);
