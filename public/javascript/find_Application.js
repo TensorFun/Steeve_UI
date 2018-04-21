@@ -258,7 +258,7 @@ function get_user() {
         delay: 1000,
         action: [
           {
-            text: "Sure!",
+            text: "Sure",
             value: "Y"
           }, {
             text: 'Nope',

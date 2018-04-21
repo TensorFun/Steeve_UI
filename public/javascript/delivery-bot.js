@@ -304,7 +304,7 @@ function get_job() {
                   delay: 1000,
                   action: [
                     {
-                      text: "Sure!",
+                      text: "Sure",
                       value: "Y"
                     },
                     {
@@ -484,7 +484,7 @@ function CV_pdf_continue(response) {
           delay: 1000,
           action: [
             {
-              text: "Sure!",
+              text: "Sure",
               value: "Y"
             },
             {
