@@ -187,7 +187,7 @@ function get_user() {
   //console.log(Data)
   $.ajax({
     type: "POST",
-    url: "http://nlp-ryze.cs.nthu.edu.tw:9998/Recruit",
+    url: "https://steevebot.ml/Recruit",
     // url: 'https://steevebot.ml/Recruit',
     data: fd,
     contentType: false,
@@ -258,7 +258,7 @@ function get_user() {
         delay: 1000,
         action: [
           {
-            text: "Sure",
+            text: "Sure!",
             value: "Y"
           }, {
             text: 'Nope',
@@ -267,14 +267,21 @@ function get_user() {
         ]
       })
     }).then(function (res) {
-      console.log(data)
+      //console.log(data)
+      var tmp = data
+      console.log(tmp)
+      
+      
 
       if(res.value == 'Y') {
 
         
-        for (i = 4 ; i <= data.length ; i++){
+        for (i = 3 ; i < data.length ; i++){
 
-          if(i<=6){
+          //console.log(i)
+          
+
+          if(i<=6 ||i == data.length){
 
           botui.message
             .bot({

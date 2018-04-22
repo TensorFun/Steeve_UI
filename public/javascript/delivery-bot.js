@@ -224,7 +224,7 @@ function get_job() {
   //console.log(Data)
   $.ajax({
     type: "POST",
-    url: "http://nlp-ryze.cs.nthu.edu.tw:9998/CV/text",
+    url: "https://steevebot.ml/CV/text",
     data: fd,
     contentType: false,
     processData: false,
@@ -386,7 +386,7 @@ $("#cv-file").change(function() {
   fd.append("file", myFile);
   //console.log(fd)
 
-  var ajaxUrl = "http://nlp-ryze.cs.nthu.edu.tw:9998/CV/pdf";
+  var ajaxUrl = "https://steevebot.ml/CV/pdf";
 
   $.ajax({
     url: ajaxUrl,
