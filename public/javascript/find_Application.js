@@ -20,7 +20,7 @@ botui.message
     botui.message
       .bot({
         delay: 600,
-        content: "It seems you need employee."
+        content: "It seems that you are looking for applicant."
       })
       .then(function() {
         botui.message
@@ -58,14 +58,14 @@ function companyfunc(e) {
     .then(function() {
       botui.message.bot({
         delay: 700,
-        content: "Well..., wait..."
+        content: "Well, please wait for a second ..."
       });
       send.off("click", companyfunc);
     })
     .then(function() {
       botui.message.bot({
         delay: 900,
-        content: "What is the position name you want to recruit?"
+        content: "What is the job title of your vacancy?"
       });
     })
     .then(function() {
@@ -79,7 +79,7 @@ function want_recruit() {
 
   if (job_name == "") {
     $(".alert.alert-warning").html(
-      "<strong>Warning!</strong> Please enter position name."
+      "<strong>Warning!</strong> Please enter job title."
     );
     mes.val("");
     $(".alert.alert-warning").show();
@@ -98,7 +98,7 @@ function want_recruit() {
     .then(function() {
       botui.message.bot({
         delay: 700,
-        content: "OK, you want to recruit someone for the job: " + job_name
+        content: "OK, you want to recruit someone for the job " + job_name
       });
     })
     .then(function() {
@@ -146,7 +146,7 @@ function Type_content() {
         send.off("click", Type_content);
         botui.message.bot({
           delay: 900,
-          content: "Well..., wait..."
+          content: "Well, please wait for a second ..."
         });
       }
     })
@@ -168,7 +168,7 @@ function end_type(){
 
   botui.message
     .add({
-      content: "I can't understand what you say."
+      content: "Oops, could you repeat that?"
   })
 }
 
@@ -199,7 +199,7 @@ function get_user() {
 
       botui.message.bot({
         delay: 1000,
-        content: "Submitting successfully!!"
+        content: "Ohh! Got it!"
       });
 
      
@@ -208,7 +208,7 @@ function get_user() {
        
         botui.message.bot({
           delay: 2000,
-          content: "Don't match anything.........."
+          content: "OH NO! We don't match anything... Could you type more details?"
       }).then(function() {
         return botui.action.button({
           delay: 1000,
@@ -233,7 +233,7 @@ function get_user() {
 
         botui.message.bot({
           delay: 1000,
-          content: "There are some applicants for you, please wait."
+          content: "Here are some applicants for you, please wait for a second."
         });
         
 
@@ -281,7 +281,7 @@ function get_user() {
           //console.log(i)
           
 
-          if(i<=6 ||i == data.length){
+          //if(i<=6 ||i == data.length){
 
           botui.message
             .bot({
@@ -289,7 +289,7 @@ function get_user() {
                 content: data[i].username + '</br>' + data[i].email +'</br>'+ data[i].PL.replace(/,/g, ", ") 
           })
 
-        }
+        //}
   
         }
       } else {

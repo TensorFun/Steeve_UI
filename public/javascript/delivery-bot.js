@@ -24,7 +24,7 @@ botui.message
       .then(function() {
         botui.message.bot({
           delay: 700,
-          content: "First, what's your name?"
+          content: "Alright, what's your name?"
         });
       })
       .then(function() {
@@ -169,7 +169,7 @@ function CV_type() {
         get_job();
         botui.message.bot({
           delay: 900,
-          content: "Well..., we are matching..."
+          content: "Well, please wait for a second ..."
         });
       }
     });
@@ -187,7 +187,7 @@ function error_type() {
 
   botui.message
     .add({
-      content: 'Please waiting'
+      content: 'Well, please wait for a second ...'
   })
 
 }
@@ -203,7 +203,7 @@ function end_type(){
 
   botui.message
     .add({
-      content: "I can't understand what you say."
+      content: "Oops, could you repeat that ?"
   })
 }
 
@@ -239,14 +239,14 @@ function get_job() {
       console.log(key_word);
 
       botui.message.bot({
-        content: "Submitting successfully!!"
+        content: "Ohh! Got it!"
       });
 
       if (typeof key_word == "undefined") {
         botui.message
           .bot({
             delay: 500,
-            content: "Sorry, we don't match anything..."
+            content: "Sorry, we don't match anything... Could you type more details?"
           })
           .then(function() {
             return botui.action.button({
@@ -275,7 +275,7 @@ function get_job() {
           .then(function() {
             botui.message.add({
               delay: 1000,
-              content: "There are some jobs for you!"
+              content: "Here are some jobs for you!"
             });
           })
           .then(function() {
@@ -375,7 +375,7 @@ $("#cv-file").change(function() {
 
   botui.message.bot({
     delay: 1000,
-    content: "Waiting........"
+    content: "Please wait for a second..."
   });
 
   var fd = new FormData();
@@ -419,14 +419,14 @@ function CV_pdf_continue(response) {
 
   botui.message.bot({
     delay: 500,
-    content: "Submit Successfully"
+    content: "Ohh! Got it!"
   });
 
   if (typeof key_word == "undefined") {
     botui.message
       .bot({
         delay: 2000,
-        content: "Don't match anything.........."
+        content: "Sorry, we don't match anything... Could you type more details?"
       })
       .then(function() {
         return botui.action.button({
@@ -454,7 +454,7 @@ function CV_pdf_continue(response) {
       .then(function() {
         botui.message.bot({
           delay: 1000,
-          content: "there are some jobs for you"
+          content: "Here are some jobs for you"
         });
       })
       .then(function() {
@@ -496,7 +496,7 @@ function CV_pdf_continue(response) {
       })
       .then(function(res) {
         if (res.value == "Y") {
-          for (i = 3; i < 6; i++) {
+          for (i = 3; i < data.length; i++) {
             botui.message.bot({
               delay: 1000,
               content:
