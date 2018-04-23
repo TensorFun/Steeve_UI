@@ -276,7 +276,7 @@ function get_user() {
       if(res.value == 'Y') {
 
         
-        for (i = 3 ; i < 6 ; i++){
+        for (i = 3 ; i < data.length ; i++){
 
           //console.log(i)
           

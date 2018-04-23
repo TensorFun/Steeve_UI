@@ -496,7 +496,7 @@ function CV_pdf_continue(response) {
       })
       .then(function(res) {
         if (res.value == "Y") {
-          for (i = 3; i < 6; i++) {
+          for (i = 3; i < data.length; i++) {
             botui.message.bot({
               delay: 1000,
               content:
