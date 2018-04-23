@@ -187,7 +187,7 @@ function get_user() {
   //console.log(Data)
   $.ajax({
     type: "POST",
-    url: "https://steevebot.ml/Recruit",
+    url: "https://steevebot.ml/api/Recruit",
     // url: 'https://steevebot.ml/Recruit',
     data: fd,
     contentType: false,

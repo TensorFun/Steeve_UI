@@ -224,7 +224,7 @@ function get_job() {
   //console.log(Data)
   $.ajax({
     type: "POST",
-    url: "https://steevebot.ml/CV/text",
+    url: "https://steevebot.ml/api/CV/text",
     data: fd,
     contentType: false,
     processData: false,
@@ -386,7 +386,7 @@ $("#cv-file").change(function() {
   fd.append("file", myFile);
   //console.log(fd)
 
-  var ajaxUrl = "https://steevebot.ml/CV/pdf";
+  var ajaxUrl = "https://steevebot.ml/api/CV/pdf";
 
   $.ajax({
     url: ajaxUrl,
