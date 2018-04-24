@@ -56,9 +56,6 @@ function namefunc(e) {
         content: "Oh, Hi! " + name + "."
       });
     })
-    .then(function(e) {
-      // send.attr('disabled',false)
-    })
     .then(function() {
       botui.message.bot({
         delay: 1700,
@@ -70,7 +67,6 @@ function namefunc(e) {
 }
 
 function emailfunc(e) {
-
   email = mes.val();
   mes.val("");
 
@@ -118,14 +114,12 @@ function emailfunc(e) {
       });
     })
     .then(function() {
-
       setTimeout(() => {
         reminder.show();
         $(".btn").attr("disabled", false);
         $("#cv-file").attr("disabled", false);
         send.on("click", CV_type);
       }, 4000);
-
     });
   //send.attr('disabled',true);
   //e.preventDefault();
@@ -176,43 +170,32 @@ function CV_type() {
 }
 
 function error_type() {
-
   error = mes.val();
   mes.val("");
 
-  botui.message
-    .human({
-      content: error
-  })
+  botui.message.human({
+    content: error
+  });
 
-  botui.message
-    .add({
-      content: 'Well, please wait for a second ...'
-  })
-
+  botui.message.add({
+    content: "Well, please wait for a second ..."
+  });
 }
 
-function end_type(){
+function end_type() {
   end = mes.val();
   mes.val("");
 
-  botui.message
-    .human({
-      content: end
-  })
+  botui.message.human({
+    content: end
+  });
 
-  botui.message
-    .add({
-      content: "Oops, could you repeat that ?"
-  })
+  botui.message.add({
+    content: "Oops, could you repeat that ?"
+  });
 }
 
-
-
-
-
 function get_job() {
-
   send.on("click", error_type);
 
   var fd = new FormData();
@@ -228,15 +211,13 @@ function get_job() {
     data: fd,
     contentType: false,
     processData: false,
-    //dataType: 'json',
     success: function(data) {
-
       send.off("click", error_type);
-      send.on("click",end_type);
+      send.on("click", end_type);
 
       var key_word = Object.keys(data)[0];
 
-      console.log(key_word);
+      // console.log(key_word);
 
       botui.message.bot({
         content: "Ohh! Got it!"
@@ -246,7 +227,8 @@ function get_job() {
         botui.message
           .bot({
             delay: 500,
-            content: "Sorry, we don't match anything... Could you type more details?"
+            content:
+              "Sorry, we don't match anything... Could you type more details?"
           })
           .then(function() {
             return botui.action.button({
@@ -264,9 +246,7 @@ function get_job() {
               window.location.reload();
             }
           });
-      } 
-
-      else {
+      } else {
         botui.message
           .bot({
             delay: 1000,
@@ -279,7 +259,7 @@ function get_job() {
             });
           })
           .then(function() {
-            for (i = 0; i < 3; i++) {
+            for (let i = 0; i < 3; i++) {
               botui.message.bot({
                 delay: 1000,
                 content:
@@ -316,7 +296,7 @@ function get_job() {
               })
               .then(function(res) {
                 if (res.value == "Y") {
-                  for (i = 3; i < 6; i++) {
+                  for (let i = 3; i < 6; i++) {
                     botui.message.bot({
                       delay: 1000,
                       content:
@@ -362,12 +342,9 @@ function get_job() {
   });
 }
 
-
 $("#cv-file").change(function() {
-
   send.off("click", CV_type);
-  send.on("click",error_type);
-
+  send.on("click", error_type);
 
   reminder.hide();
 
@@ -410,9 +387,8 @@ $("#cv-file").change(function() {
 });
 
 function CV_pdf_continue(response) {
-
   send.off("click", error_type);
-  send.on("click",end_type);
+  send.on("click", end_type);
 
   var data = response;
   var key_word = Object.keys(data)[0];
@@ -426,7 +402,8 @@ function CV_pdf_continue(response) {
     botui.message
       .bot({
         delay: 2000,
-        content: "Sorry, we don't match anything... Could you type more details?"
+        content:
+          "Sorry, we don't match anything... Could you type more details?"
       })
       .then(function() {
         return botui.action.button({
@@ -444,7 +421,6 @@ function CV_pdf_continue(response) {
           window.location.reload();
         }
       });
-
   } else {
     botui.message
       .bot({
@@ -458,7 +434,7 @@ function CV_pdf_continue(response) {
         });
       })
       .then(function() {
-        for (i = 0; i < 3; i++) {
+        for (let i = 0; i < 3; i++) {
           botui.message.bot({
             delay: 1000,
             content:
@@ -496,7 +472,7 @@ function CV_pdf_continue(response) {
       })
       .then(function(res) {
         if (res.value == "Y") {
-          for (i = 3; i < data.length; i++) {
+          for (let i = 3; i < data.length; i++) {
             botui.message.bot({
               delay: 1000,
               content:

@@ -2,7 +2,7 @@ const botui = new BotUI("delivery-bot");
 let company_name;
 let job_name;
 let content_arr = [];
-var data ;
+var data;
 
 const mes = $("#m");
 const send = $("#send");
@@ -155,31 +155,25 @@ function Type_content() {
     });
 }
 
-
-
-function end_type(){
+function end_type() {
   end = mes.val();
   mes.val("");
 
-  botui.message
-    .human({
-      content: end
-  })
+  botui.message.human({
+    content: end
+  });
 
-  botui.message
-    .add({
-      content: "Oops, could you repeat that?"
-  })
+  botui.message.add({
+    content: "Oops, could you repeat that?"
+  });
 }
 
-
 function get_user() {
-
   send.on("click", end_type);
 
   var fd = new FormData();
   var strr = content_arr.join("\n");
-  console.log(strr)
+  // console.log(strr)
   //var Data = JSON.stringify({company_name:company_name,job_name:job_name,content:strr})
   //fd.append('username',name)
   //fd.append('email',email)
@@ -193,8 +187,7 @@ function get_user() {
     contentType: false,
     processData: false,
     success: function(Data) {
-
-      data = Data
+      data = Data;
       //console.log(data.length)
 
       botui.message.bot({
@@ -202,131 +195,117 @@ function get_user() {
         content: "Ohh! Got it!"
       });
 
-     
       //console.log(data[key_word])
-      if (data.length==0){
-       
-        botui.message.bot({
-          delay: 2000,
-          content: "OH NO! We don't match anything... Could you type more details?"
-      }).then(function() {
-        return botui.action.button({
-          delay: 1000,
-          action: [
-            {
-              text: "Leave",
-              value: "L"
+      if (data.length == 0) {
+        botui.message
+          .bot({
+            delay: 2000,
+            content:
+              "OH NO! We don't match anything... Could you type more details?"
+          })
+          .then(function() {
+            return botui.action.button({
+              delay: 1000,
+              action: [
+                {
+                  text: "Leave",
+                  value: "L"
+                }
+              ]
+            });
+          })
+          .then(function(res) {
+            if (res.value == "L") {
+              window.location.reload();
             }
-          ]
-        });
-      })
-      .then(function(res) {
-        if (res.value == "L") {
-          window.location.reload();
-        }
-      });
-       
-      
-      }
-
-      else{
-
+          });
+      } else {
         botui.message.bot({
           delay: 1000,
           content: "Here are some applicants for you, please wait for a second."
         });
-        
-
-      for (i = 0 ; i < 3 ; i++){
+        ㄋ;
+        for (let i = 0; i < 3; i++) {
+          botui.message.bot({
+            delay: 2000,
+            content:
+              data[i].username +
+              "</br>" +
+              data[i].email +
+              "</br>" +
+              data[i].PL.replace(/,/g, ", ")
+          });
+        }
 
         botui.message
           .bot({
-              delay: 2000,
-              content: data[i].username + '</br>' + data[i].email +'</br>' + data[i].PL.replace(/,/g, ", ") 
-        })
-
-      }
-
-    
-    botui.message.bot({
-        delay: 2000,
-        content: "Wanna see more applicants?"
-    }).then(function() {
-      console.log(data)
-      
-      return botui.action.button({
-        delay: 1000,
-        action: [
-          {
-            text: "Sure!",
-            value: "Y"
-          }, {
-            text: 'Nope',
-            value: 'N'
-          }
-        ]
-      })
-    }).then(function (res) {
-      //console.log(data)
-      var tmp = data
-      console.log(tmp)
-      
-      
-
-      if(res.value == 'Y') {
-
-        
-        for (i = 3 ; i < data.length ; i++){
-
-          //console.log(i)
-          
-
-          //if(i<=6 ||i == data.length){
-
-          botui.message
-            .bot({
-                delay: 1000,
-                content: data[i].username + '</br>' + data[i].email +'</br>'+ data[i].PL.replace(/,/g, ", ") 
+            delay: 2000,
+            content: "Wanna see more applicants?"
           })
+          .then(function() {
+            console.log(data);
 
-        //}
-  
-        }
-      } else {
+            return botui.action.button({
+              delay: 1000,
+              action: [
+                {
+                  text: "Sure!",
+                  value: "Y"
+                },
+                {
+                  text: "Nope",
+                  value: "N"
+                }
+              ]
+            });
+          })
+          .then(function(res) {
+            //console.log(data)
+            var tmp = data;
+            console.log(tmp);
 
-        botui.message.bot({
-          delay: 1000,
-          content: "All the best to getting a suitable job."
-        });
-
+            if (res.value == "Y") {
+              for (let i = 3; i < data.length; i++) {
+                botui.message.bot({
+                  delay: 1000,
+                  content:
+                    data[i].username +
+                    "</br>" +
+                    data[i].email +
+                    "</br>" +
+                    data[i].PL.replace(/,/g, ", ")
+                });
+              }
+            } else {
+              botui.message.bot({
+                delay: 1000,
+                content: "All the best to getting a suitable job."
+              });
+            }
+          })
+          .then(function() {
+            return botui.action
+              .button({
+                delay: 1000,
+                action: [
+                  {
+                    text: "Leave",
+                    value: "L"
+                  }
+                ]
+              })
+              .then(function(res) {
+                if (res.value == "L") {
+                  window.location.reload();
+                }
+              });
+          });
       }
-
-    }).then(function(){
-
-      return botui.action.button({
-        delay: 1000,
-        action: [
-          {
-            text: "Leave",
-            value: "L"
-          }
-        ]
-      }).then(function(res) {
-        if (res.value == "L") {
-          window.location.reload();
-        }
-      });
-
-    })
-
-  }
-      
     },
     error: function() {
       console.log("process error");
     }
   });
-
 }
 
 mes.keydown(function(event) {
