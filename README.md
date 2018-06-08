@@ -27,7 +27,7 @@ visit : http://localhost:3000/
 
 ## Authors
 
-* **Chung Ting Tsai** - *Initial work* - [NLPting](https://github.com/NLPting)
-* **Wen Bin Han** - *Initial work* - [HanVincent](https://github.com/HanVincent)
-* **Chia Fang Ho** - *Initial work* - [KellyHO](https://github.com/KellyHO)
+* **Chung Ting Tsai** - [NLPting](https://github.com/NLPting)
+* **Wen Bin Han** - [HanVincent](https://github.com/HanVincent)
+* **Chia Fang Ho** - [KellyHO](https://github.com/KellyHO)
 
